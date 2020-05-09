@@ -1,0 +1,425 @@
+\documentclass[11pt]{article}
+
+% The following LaTeX setup is built upon a template from Rebekah Dix (GitHub: @rebekahanne)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Packages
+
+% AMS 
+\usepackage{amsmath, amssymb, amsthm, amsbsy}
+% Geometry
+\usepackage{geometry}
+% Colors
+\usepackage[usenames,dvipsnames]{xcolor}
+% Figures
+\usepackage{float}
+\usepackage{graphicx}
+% Multi column lists
+\usepackage{multicol}
+% Subfigures
+\usepackage{caption}
+\usepackage{subcaption}
+% Caligraphic
+\usepackage{mathrsfs}
+\usepackage{bbm}
+% Bold
+\usepackage{bm}
+% algos
+\usepackage[linesnumbered, lined, ruled]{algorithm2e}
+% Spacing 
+\usepackage{setspace}
+% Backslash box
+\usepackage{diagbox}
+% Multirow in table
+\usepackage{multirow}
+% Refs
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+% Indent
+\usepackage{indentfirst}
+%\setlength\parindent{0pt}
+%\setlength{\parskip}{7pt} % vertical space between paragraphs
+% Pretty lists
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=-2pt,topsep=2pt}
+\setlist[itemize]{itemsep=-2pt,topsep=2pt}
+\setlist[enumerate,1]{label=(\roman*)}
+% Code
+\usepackage{listings}
+% Appendix
+\usepackage[toc,page]{appendix}
+% Math
+\usepackage{mathtools}
+\usepackage{xparse}
+% Equation numbering
+\numberwithin{equation}{section}
+% Use more than one optional parameter in a new commands
+\usepackage{xargs}                      
+% Todo
+\usepackage[colorinlistoftodos,prependcaption,textsize=normalsize]{todonotes}
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+\newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
+% Framed theorems
+\usepackage[nobreak=true,align=center,userdefinedwidth=30em,linewidth=1pt]{mdframed}
+% Change left or right spacing
+\usepackage{changepage}
+% Footnote symbol
+\usepackage{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+% Bibliography
+\usepackage[backend=biber,style=authoryear]{biblatex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Document Settings
+
+% Figure path
+\graphicspath{{./figures/}}
+% Matrix columns
+\setcounter{MaxMatrixCols}{10}
+% So pages will break inside long equation environments
+\allowdisplaybreaks
+% Font
+\usepackage{mathpazo} 
+\linespread{1.05}  
+%\usepackage{courier}
+% Geometry
+\geometry{left=1in,right=1in,top=1in,bottom=1in}
+% Counters
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Colors
+\definecolor{Tm}{rgb}{0,0,0.80}
+\newcommand{\navy}[1]{\textcolor{MidnightBlue}{\bf #1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Environments
+\theoremstyle{definition}
+\mdfdefinestyle{tightTop}{
+    linecolor=black,
+    linewidth=.7pt,
+    %roundcorner=20pt,
+    innertopmargin=0pt,
+    nobreak=false
+    %innerbottommargin=0pt,
+    %innerrightmargin=0pt,
+    %innerleftmargin=0pt
+}
+\newmdtheoremenv[style=tightTop]{theorem}{\color{Maroon}{\textbf{Theorem}}}[subsection]
+% \newtheorem{theorem}{\color{ForestGreen}{\textbf{Theorem}}}[section]
+\newtheorem{claim}{\color{ForestGreen}{\textbf{Claim}}}
+% \newtheorem{lemma}[theorem]{\color{ForestGreen}{\textbf{Lemma}}}
+% \newtheorem{proposition}[theorem]{\color{ForestGreen}{\textbf{Proposition}}}
+% \newtheorem{corollary}[theorem]{\color{ForestGreen}{\textbf{Corollary}}}
+\newmdtheoremenv[style=tightTop]{lemma}[theorem]{\color{ForestGreen}{\textbf{Lemma}}}
+\newmdtheoremenv[style=tightTop]{proposition}[theorem]{\color{ForestGreen}{\textbf{Proposition}}}
+\newmdtheoremenv[style=tightTop]{corollary}[theorem]{\color{ForestGreen}{\textbf{Corollary}}}
+
+\newtheorem{axiom}[theorem]{\color{ForestGreen}{\textbf{Axiom}}}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+%\theoremstyle{definition}
+\newmdtheoremenv[style=tightTop]{definition}{\color{MidnightBlue}{\textbf{Definition}}}[subsection]
+\newtheorem{example}{\color{WildStrawberry}Example}[subsection]
+\newtheorem{assumption}{Assumption}[subsection]
+\newtheorem{condition}[assumption]{Condition}
+\newtheorem*{solution}{\color{Goldenrod}Solution}
+\newtheorem{exercise}{\color{YellowOrange}Exercise}[subsection]
+
+% Literature Summary Standards
+\newtheorem*{motivation}{Motivation}
+\newtheorem*{summary}{Summary}
+\newtheorem*{remark}{Remark}
+\newtheorem*{model}{Model}
+\newtheorem*{tresults}{Theoretical Results}
+\newtheorem*{eresults}{Empirical Results}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Math macros
+
+% Math ``brackets''
+\newcommand\parens[1]{\left( #1 \right)}
+\newcommand\squares[1]{\left[ #1 \right]}
+\newcommand\braces[1]{\left\{ #1 \right\}}
+\newcommand\angles[1]{\left\langle #1 \right\rangle}
+\newcommand\ceil[1]{\left\lceil #1 \right\rceil}
+\newcommand\floor[1]{\left\lfloor #1 \right\rfloor}
+\newcommand\abs[1]{\left| #1 \right|}
+\newcommand\dabs[1]{\left\| #1 \right\|}
+\newcommand\vect[1]{\mathbf{#1}}
+\newcommand\closure[1]{\overline{#1}}
+\newcommand\pset[1]{\mathcal{P}\left(#1\right)}
+\newcommand\inv[1]{#1^{-1}}
+\newcommand\norm[1]{\lVert#1\rVert}
+
+% inner product
+\providecommand{\inner}[1]{\left\langle{#1}\right\rangle}
+% stochastic dominance
+\newcommand{\lesd}{\preceq_{\textrm{SD}}}
+% Set builder (use \Set ultimately and separate by ;)
+\DeclarePairedDelimiterX{\set}[1]{\{}{\}}{\setargs{#1}}
+\NewDocumentCommand{\setargs}{>{\SplitArgument{1}{;}}m}
+{\setargsaux#1}
+\NewDocumentCommand{\setargsaux}{mm}
+{\IfNoValueTF{#2}{#1} {#1\nonscript\:\delimsize\vert\allowbreak\nonscript\:\mathopen{}#2}}%
+\def\Set{\set*}%
+
+% center math cell
+\newcommand*\centermathcell[1]{\omit\hfil$\displaystyle#1$\hfil\ignorespaces}
+
+% hat
+\usepackage{scalerel,stackengine}
+\stackMath
+\newcommand\widehatt[1]{%
+\savestack{\tmpbox}{\stretchto{%
+  \scaleto{%
+    \scalerel*[\widthof{\ensuremath{#1}}]{\kern-.6pt\bigwedge\kern-.6pt}%
+    {\rule[-\textheight/2]{1ex}{\textheight}}%WIDTH-LIMITED BIG WEDGE
+  }{\textheight}% 
+}{0.5ex}}%
+\stackon[1pt]{#1}{\tmpbox}%
+}
+
+% Proof logic
+\newcommand{\then}{$\Rightarrow$ }
+\newcommand{\suf}{$\Leftarrow$ }
+\newcommand{\nec}{$\Rightarrow$ }
+
+% Shortcut math
+\newcommand{\ls}{\leqslant}
+\newcommand{\gs}{\geqslant}
+\def\ss{\subset}
+\def\sse{\subseteq}
+\def\nss{\not \ss}
+\def\sps{\supset}
+\def\pss{\subsetneq}
+\def\prece{\preccurlyeq}
+\def\condgap{\hspace{1cm}}
+\def\eprec{\preceq}
+% argmax and min
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+\newcommand{\es}{\emptyset}
+% Implication and reverse implication
+\def\imp{\Rightarrow}
+\def\pmi{\Leftarrow}
+% Integers up to number
+\newcommand\intsfin[1]{\braces{1, \ldots, #1}}
+% Logic
+\def\bic{\Leftrightarrow}
+% Bold and italic
+\newcommand\boldit[1]{\textbf{\textit{#1}}}
+% Misc math
+\newcommand{\st}{\ensuremath{\ \mathrm{s.t.}\ }}
+\newcommand{\setntn}[2]{ \{ #1 : #2 \} }
+\newcommand{\cf}[1]{ \lstinline|#1| }
+\newcommand{\fore}{\therefore \quad}
+\newcommand{\tod}{\stackrel { d } {\to} }
+\newcommand{\tow}{\stackrel { w } {\to} }
+\newcommand{\toprob}{\stackrel { p } {\to} }
+\newcommand{\toms}{\stackrel { ms } {\to} }
+\newcommand{\eqdist}{\stackrel{d} {=} }
+\newcommand{\iidsim}{\stackrel{\textrm{ {\sc iid }}} {\sim} }
+\newcommand{\1}{\mathbbm 1}
+\newcommand{\dee}{\,{\rm d}}
+\newcommand{\given}{\, | \,}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+
+% Shortcut greek
+\def\a{\alpha}
+\def\b{\beta}
+\def\g{\gamma}
+\def\D{\Delta}
+\def\d{\delta}
+\def\z{\zeta}
+\def\k{\kappa}
+\def\l{\lambda}
+\def\n{\nu}
+\def\r{\rho}
+\def\s{\sigma}
+\def\t{\tau}
+\def\x{\xi}
+\def\w{\omega}
+\def\W{\Omega}
+% Nice greek
+\newcommand{\p}{\varphi}
+\newcommand{\e}{\varepsilon}
+
+% Shorcut vectors
+\def\vx{\vect{x}}
+\def\vy{\vect{y}}
+\def\va{\vect{a}}
+\def\vb{\vect{b}}
+
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\PP}{\mathbbm P}
+\newcommand{\EE}{\mathbbm E}
+\newcommand{\TT}{\mathbbm T}
+\newcommand{\VV}{\mathbbm V}
+\newcommand{\QQ}{\mathbbm Q}
+\newcommand{\WW}{\mathbbm W}
+\newcommand{\ZZ}{\mathbbm Z}
+\newcommand{\KK}{\mathbbm K}
+\renewcommand{\SS}{\mathbbm S}
+
+% Expectation/Probability
+\newcommand{\ee}[1]{\mathbbm{E}[{#1}]}
+\newcommand{\pp}[1]{\mathbbm{P}({#1})}
+
+\newcommand{\GG}{\mathsf G}
+\newcommand{\XX}{\mathsf X}
+\renewcommand{\AA}{\mathsf A}
+\newcommand{\YY}{\mathsf Y}
+\newcommand{\ZZZ}{\mathsf Z}
+
+\newcommand{\cC}{\mathscr C}
+\newcommand{\iI}{\mathscr I}
+\newcommand{\eE}{\mathscr E}
+\newcommand{\fF}{\mathscr F}
+\newcommand{\rR}{\mathscr R}
+\newcommand{\sS}{\mathscr S}
+\newcommand{\lL}{\mathscr L}
+\newcommand{\cG}{\mathscr G}
+
+\newcommand{\aA}{\mathcal A}
+\newcommand{\pP}{\mathcal P}
+\newcommand{\vV}{\mathcal V}
+\newcommand{\dD}{\mathcal D}
+\newcommand{\mM}{\mathcal M}
+\newcommand{\oO}{\mathcal O}
+\newcommand{\gG}{\mathcal G}
+\newcommand{\hH}{\mathcal H}
+\newcommand{\tT}{\mathcal T}
+\newcommand{\bB}{\mathcal B}
+
+% Common collections
+\def\cA{\col{A}}
+\def\cB{\col{B}}
+\def\cC{\col{C}}
+\def\cT{\col{T}}
+\def\cU{\col{U}}
+
+% Common closures
+\def\clA{\closure{A}}
+\def\clB{\closure{B}}
+\def\clK{\closure{K}}
+
+% Operators
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\graph}{graph}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\Prob}{Prob}
+\DeclareMathOperator{\determinant}{det}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\cov}{Cov}
+\DeclareMathOperator{\corr}{Corr}
+\DeclareMathOperator{\var}{Var}
+\DeclareMathOperator{\mse}{mse}
+\DeclareMathOperator{\se}{se}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\range}{rng}
+\DeclareMathOperator{\kernel}{ker}
+\DeclareMathOperator{\dimension}{dim}
+\DeclareMathOperator{\bias}{bias}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ran}{ran}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Cl}{Cl}
+
+% Include bibliography file
+\addbibresource{bibliography.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{titlepage}
+\title{Title}
+\author{First Last\thanks{ABC}}
+\date{\small \today}
+\maketitle
+\bigskip
+\begin{abstract}
+\noindent Words words words\\
+\vspace{0in}\\
+\noindent\textbf{Keywords:} ABC
+
+\bigskip
+\end{abstract}
+\setcounter{page}{0}
+\thispagestyle{empty}
+\end{titlepage}
+\pagebreak \newpage
+
+%\doublespacing
+
+\section{Introduction} \label{sec:Introduction}
+
+Something something \cite{koenker2001quantile}. 
+
+\section{Methodology} \label{sec:Methodology}
+
+\section{Data} \label{sec:Data}
+
+\section{Results} \label{sec:Results}
+
+\section{Discussions} \label{sec:Discussion}
+
+\section{Conclusion} \label{sec:Conclusion}
+
+\newpage
+
+\onehalfspacing
+
+\label{sec:References}
+
+\printbibliography
+
+\clearpage
+
+\section*{Tables} \label{sec:tab}
+\addcontentsline{toc}{section}{Tables}
+
+\begin{table}[hp]
+  \centering
+  \includegraphics[width=4cm,height=4cm,keepaspectratio]{tab1.png}
+  \caption{Description}
+  \label{tab:1}
+\end{table}
+
+\clearpage
+
+\section*{Figures} \label{sec:fig}
+\addcontentsline{toc}{section}{Figures}
+
+
+\end{document}

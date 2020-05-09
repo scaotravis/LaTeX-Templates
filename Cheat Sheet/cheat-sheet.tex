@@ -1,0 +1,651 @@
+% document properties
+\documentclass[10pt,landscape]{article}
+\title{Metrics Cheat Sheet}
+\author{Travis Cao}
+
+% The following LaTeX setup is borrowed from Rebekah Dix (GitHub: rebekahanne)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Packages
+
+% AMS 
+\usepackage{amsmath, amssymb, amsthm, amsbsy}
+% Geometry
+\usepackage[landscape]{geometry}
+% Colors
+\usepackage[usenames,dvipsnames]{xcolor}
+% Figures
+\usepackage{float}
+\usepackage{graphicx}
+% Multi column lists
+\usepackage{multicol}
+% Pretty tables
+\usepackage{booktabs}
+% Subfigures
+\usepackage{caption}
+\usepackage{subcaption}
+% Caligraphic
+\usepackage{mathrsfs}
+\usepackage{bbm}
+% Bold
+\usepackage{bm}
+% algos
+\usepackage[linesnumbered, lined, ruled]{algorithm2e}
+% Spacing 
+\usepackage{setspace}
+% Backslash box
+\usepackage{diagbox}
+% Multirow in table
+\usepackage{multirow}
+% Refs
+\usepackage[colorlinks=true, citecolor=Blue, linkcolor=blue]{hyperref}
+\newcommand\myshade{85}
+\colorlet{mylinkcolor}{violet}
+\colorlet{mycitecolor}{PineGreen}
+\colorlet{myurlcolor}{Aquamarine}
+\hypersetup{
+	colorlinks = true,
+  	linkcolor  = mylinkcolor!\myshade!black,
+ 	citecolor  = mycitecolor!\myshade!black,
+  	urlcolor   = myurlcolor!\myshade!black
+}
+% Bibliography
+\usepackage{filecontents}
+\usepackage{natbib}
+% Indent
+\usepackage{indentfirst}
+%\setlength\parindent{0pt}
+%\setlength{\parskip}{7pt} % vertical space between paragraphs
+% Pretty lists
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=-2pt,topsep=2pt}
+\setlist[itemize]{itemsep=0pt,topsep=1pt}
+\setlist[enumerate,1]{label=(\roman*)}
+% Code
+\usepackage{listings}
+% Appendix
+\usepackage[toc,page]{appendix}
+% Math
+\usepackage{mathtools}
+\usepackage{xparse}
+% Equation numbering
+\numberwithin{equation}{section}
+% Use more than one optional parameter in a new commands
+\usepackage{xargs}                      
+% Todo
+\usepackage[colorinlistoftodos,prependcaption,textsize=normalsize]{todonotes}
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+\newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
+% Framed theorems
+\usepackage[nobreak=true,align=center,userdefinedwidth=30em,linewidth=1pt]{mdframed}
+% Change left or right spacing
+\usepackage{changepage}
+% Footnote symbol
+\usepackage{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Document Settings
+
+% Figure path
+\graphicspath{{./figures/}}
+% Matrix columns
+\setcounter{MaxMatrixCols}{10}
+% So pages will break inside long equation environments
+\allowdisplaybreaks
+% Font
+\usepackage{mathpazo} 
+\linespread{1.05}  
+%\usepackage{courier}
+% Geometry
+\geometry{left=.5in,right=.5in,top=.5in,bottom=.5in}
+% Counters
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Cheatsheet Specific Styles
+
+% Turn off header and footer
+\pagestyle{empty}
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}
+                        {-1ex plus -.5ex minus -.2ex}
+                        {0.5ex plus .2ex}
+                        {\vspace{.8cm}\normalfont\large\bfseries\underline}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}
+                           {-1explus -.5ex minus -.2ex}
+                           {0.5ex plus .2ex}{\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}
+                              {-1ex plus -.5ex minus -.2ex}
+                              {1ex plus .2ex}
+                              {\normalfont\small\bfseries}}
+\makeatother
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Colors
+\definecolor{Tm}{rgb}{0,0,0.80}
+\newcommand{\navy}[1]{\textcolor{MidnightBlue}{\bf #1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Environments
+\theoremstyle{definition}
+\mdfdefinestyle{tightTop}{
+    linecolor=black,
+    linewidth=.7pt,
+    %roundcorner=20pt,
+    innertopmargin=0pt,
+    %innerbottommargin=0pt,
+    %innerrightmargin=0pt,
+    %innerleftmargin=0pt
+}
+\newmdtheoremenv[style=tightTop]{theorem}{\color{Maroon}{\textbf{Theorem}}}[section]
+% \newtheorem{theorem}{\color{ForestGreen}{\textbf{Theorem}}}[section]
+\newtheorem{claim}{\color{ForestGreen}{\textbf{Claim}}}
+% \newtheorem{lemma}[theorem]{\color{ForestGreen}{\textbf{Lemma}}}
+% \newtheorem{proposition}[theorem]{\color{ForestGreen}{\textbf{Proposition}}}
+% \newtheorem{corollary}[theorem]{\color{ForestGreen}{\textbf{Corollary}}}
+\newmdtheoremenv[style=tightTop]{lemma}[theorem]{\color{ForestGreen}{\textbf{Lemma}}}
+\newmdtheoremenv[style=tightTop]{proposition}[theorem]{\color{ForestGreen}{\textbf{Proposition}}}
+\newmdtheoremenv[style=tightTop]{corollary}[theorem]{\color{ForestGreen}{\textbf{Corollary}}}
+
+\newtheorem{axiom}[theorem]{\color{ForestGreen}{\textbf{Axiom}}}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+%\theoremstyle{definition}
+\newmdtheoremenv[style=tightTop]{definition}{\color{MidnightBlue}{\textbf{Definition}}}[section]
+\newtheorem{example}{\color{WildStrawberry}Example}[section]
+\newtheorem{assumption}{Assumption}[section]
+\newtheorem{condition}[assumption]{Condition}
+\newtheorem*{solution}{\color{Goldenrod}Solution}
+\newtheorem{exercise}{\color{YellowOrange}Exercise}[section]
+
+% Literature Summary Standards
+\newtheorem*{motivation}{Motivation}
+\newtheorem*{summary}{Summary}
+\newtheorem*{remark}{Remark}
+\newtheorem*{model}{Model}
+\newtheorem*{tresults}{Theoretical Results}
+\newtheorem*{eresults}{Empirical Results}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Math macros
+
+% Math ``brackets''
+\newcommand\parens[1]{\left( #1 \right)}
+\newcommand\squares[1]{\left[ #1 \right]}
+\newcommand\braces[1]{\left\{ #1 \right\}}
+\newcommand\angles[1]{\left\langle #1 \right\rangle}
+\newcommand\ceil[1]{\left\lceil #1 \right\rceil}
+\newcommand\floor[1]{\left\lfloor #1 \right\rfloor}
+\newcommand\abs[1]{\left| #1 \right|}
+\newcommand\dabs[1]{\left\| #1 \right\|}
+\newcommand\vect[1]{\mathbf{#1}}
+\newcommand\closure[1]{\overline{#1}}
+\newcommand\pset[1]{\mathcal{P}\left(#1\right)}
+\newcommand\inv[1]{#1^{-1}}
+\newcommand\norm[1]{\lVert#1\rVert}
+
+% inner product
+\providecommand{\inner}[1]{\left\langle{#1}\right\rangle}
+% stochastic dominance
+\newcommand{\lesd}{\preceq_{\textrm{SD}}}
+% Set builder (use \Set ultimately and separate by ;)
+\DeclarePairedDelimiterX{\set}[1]{\{}{\}}{\setargs{#1}}
+\NewDocumentCommand{\setargs}{>{\SplitArgument{1}{;}}m}
+{\setargsaux#1}
+\NewDocumentCommand{\setargsaux}{mm}
+{\IfNoValueTF{#2}{#1} {#1\nonscript\:\delimsize\vert\allowbreak\nonscript\:\mathopen{}#2}}%
+\def\Set{\set*}%
+
+% center math cell
+\newcommand*\centermathcell[1]{\omit\hfil$\displaystyle#1$\hfil\ignorespaces}
+
+% hat
+\usepackage{scalerel,stackengine}
+\stackMath
+\newcommand\widehatt[1]{%
+\savestack{\tmpbox}{\stretchto{%
+  \scaleto{%
+    \scalerel*[\widthof{\ensuremath{#1}}]{\kern-.6pt\bigwedge\kern-.6pt}%
+    {\rule[-\textheight/2]{1ex}{\textheight}}%WIDTH-LIMITED BIG WEDGE
+  }{\textheight}% 
+}{0.5ex}}%
+\stackon[1pt]{#1}{\tmpbox}%
+}
+
+% Proof logic
+\newcommand{\then}{$\Rightarrow$ }
+\newcommand{\suf}{$\Leftarrow$ }
+\newcommand{\nec}{$\Rightarrow$ }
+
+% Shortcut math
+\newcommand{\ls}{\leqslant}
+\newcommand{\gs}{\geqslant}
+\def\ss{\subset}
+\def\sse{\subseteq}
+\def\nss{\not \ss}
+\def\sps{\supset}
+\def\pss{\subsetneq}
+\def\prece{\preccurlyeq}
+\def\condgap{\hspace{1cm}}
+\def\eprec{\preceq}
+% argmax and min
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+\newcommand{\es}{\emptyset}
+% Implication and reverse implication
+\def\imp{\Rightarrow}
+\def\pmi{\Leftarrow}
+% Integers up to number
+\newcommand\intsfin[1]{\braces{1, \ldots, #1}}
+% Logic
+\def\bic{\Leftrightarrow}
+% Bold and italic
+\newcommand\boldit[1]{\textbf{\textit{#1}}}
+% Misc math
+\newcommand{\st}{\ensuremath{\ \mathrm{s.t.}\ }}
+\newcommand{\setntn}[2]{ \{ #1 : #2 \} }
+\newcommand{\cf}[1]{ \lstinline|#1| }
+\newcommand{\fore}{\therefore \quad}
+\newcommand{\tod}{\stackrel { d } {\to} }
+\newcommand{\tow}{\stackrel { w } {\to} }
+\newcommand{\toprob}{\stackrel { p } {\to} }
+\newcommand{\toms}{\stackrel { ms } {\to} }
+\newcommand{\eqdist}{\stackrel{d} {=} }
+\newcommand{\iidsim}{\stackrel{\textrm{ {\sc iid }}} {\sim} }
+\newcommand{\1}{\mathbbm 1}
+\newcommand{\dee}{\,{\rm d}}
+\newcommand{\given}{\, | \,}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+
+% Shortcut greek
+\def\a{\alpha}
+\def\b{\beta}
+\def\g{\gamma}
+\def\D{\Delta}
+\def\d{\delta}
+\def\z{\zeta}
+\def\k{\kappa}
+\def\l{\lambda}
+\def\n{\nu}
+\def\r{\rho}
+\def\s{\sigma}
+\def\t{\tau}
+\def\x{\xi}
+\def\w{\omega}
+\def\W{\Omega}
+% Nice greek
+\newcommand{\p}{\varphi}
+\newcommand{\e}{\varepsilon}
+
+% Shorcut vectors
+\def\vx{\vect{x}}
+\def\vy{\vect{y}}
+\def\va{\vect{a}}
+\def\vb{\vect{b}}
+
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\PP}{\mathbbm P}
+\newcommand{\EE}{\mathbbm E}
+\newcommand{\TT}{\mathbbm T}
+\newcommand{\VV}{\mathbbm V}
+\newcommand{\QQ}{\mathbbm Q}
+\newcommand{\WW}{\mathbbm W}
+\newcommand{\ZZ}{\mathbbm Z}
+\newcommand{\KK}{\mathbbm K}
+\renewcommand{\SS}{\mathbbm S}
+\newcommand{\plim}{\text{plim}}
+
+% Expectation/Probability
+\newcommand{\ee}[1]{\mathbbm{E}[{#1}]}
+\newcommand{\pp}[1]{\mathbbm{P}({#1})}
+
+\newcommand{\GG}{\mathsf G}
+\newcommand{\XX}{\mathsf X}
+\renewcommand{\AA}{\mathsf A}
+\newcommand{\YY}{\mathsf Y}
+\newcommand{\ZZZ}{\mathsf Z}
+
+\newcommand{\cC}{\mathscr C}
+\newcommand{\iI}{\mathscr I}
+\newcommand{\eE}{\mathscr E}
+\newcommand{\fF}{\mathscr F}
+\newcommand{\rR}{\mathscr R}
+\newcommand{\sS}{\mathscr S}
+\newcommand{\lL}{\mathscr L}
+\newcommand{\cG}{\mathscr G}
+
+\newcommand{\aA}{\mathcal A}
+\newcommand{\pP}{\mathcal P}
+\newcommand{\vV}{\mathcal V}
+\newcommand{\dD}{\mathcal D}
+\newcommand{\mM}{\mathcal M}
+\newcommand{\oO}{\mathcal O}
+\newcommand{\gG}{\mathcal G}
+\newcommand{\hH}{\mathcal H}
+\newcommand{\tT}{\mathcal T}
+\newcommand{\bB}{\mathcal B}
+
+% Common collections
+\def\cA{\col{A}}
+\def\cB{\col{B}}
+\def\cC{\col{C}}
+\def\cT{\col{T}}
+\def\cU{\col{U}}
+
+% Common closures
+\def\clA{\closure{A}}
+\def\clB{\closure{B}}
+\def\clK{\closure{K}}
+
+% operators
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\graph}{graph}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\Prob}{Prob}
+\DeclareMathOperator{\determinant}{det}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\cov}{Cov}
+\DeclareMathOperator{\corr}{Corr}
+\DeclareMathOperator{\var}{Var}
+\DeclareMathOperator{\mse}{mse}
+\DeclareMathOperator{\se}{se}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\range}{rng}
+\DeclareMathOperator{\kernel}{ker}
+\DeclareMathOperator{\dimension}{dim}
+\DeclareMathOperator{\bias}{bias}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ran}{ran}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Cl}{Cl}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+    \large{710a Metrics Notes} \\
+    \vspace{.1cm}
+    \normalsize{Travis Cao}
+\end{center}
+
+\vspace{-.8cm}
+
+\section{Stats}
+
+\subsection{Geometric series sum}
+$\sum_{j = 0}^n r^j = \frac{1 - r^{n+1}}{1 - r}$
+
+\subsection{Conditional expectation}
+$E[Y] = \sum_l E[Y|Z = l] Pr(Z = l)$
+
+\subsection{Block inversion formula}
+$M$ is invertible iff $A-BD^{-1}C$ is invertible, and $M^{-1} = $
+\begin{align*}
+  \begin{bmatrix}
+    (A-BD^{-1}C)^{-1} & -(A-BD^{-1}C)^{-1}BD^{-1} \\ 
+    -D^{-1}C(A-BD^{-1}C)^{-1} & D^{-1}+D^{-1}C(A-BD^{-1}C)^{-1}BD^{-1}
+  \end{bmatrix}
+\end{align*}
+
+\subsection{Sherman-Morrison formula}
+$A+uv'$ is invertible iff $1+v'A^{-1}u \neq 0$, and
+\begin{align*}
+  (A+uv')^{-1} = A^{-1} - \frac{A^{-1}uv'A^{-1}}{1+v'A^{-1}u}
+\end{align*}
+
+\subsection{Partial and average partial effect}
+\begin{itemize}
+  \item Partial effect (at $X = x$): $\frac{\partial}{\partial x} E[Y|X = x]$
+  \item Average partial effect: $E[\frac{\partial}{\partial X} E[Y|X]]$
+\end{itemize}
+
+\subsection{Inequalities}
+\begin{itemize}
+  \item Chebyshev's: $Pr (\abs{X - E[X]} \geq \epsilon) \leq \frac{Var(X)}{\epsilon^2}$ for all $\epsilon > 0$
+  \item Markov: $Pr(X \geq \epsilon) \leq \frac{E[X]}{\epsilon}$ for all $\epsilon > 0$
+  \item Jensen's: For convex function $g(\cdot)$, $g(E[X]) \leq E[g(X)]$
+  \item Cauchy Schwarz: $E[XY]^2 \leq E[X^2] E[Y^2]$
+\end{itemize}
+
+
+\subsection{Martingale CLT}
+If $\{ Z_t \}_{t=1}^T$ satisfy
+\begin{itemize}
+  \vspace{3pt}
+  \item $\{ Z_t \}_{t=1}^T$ is strictly stationary
+  \vspace{3pt}
+  \item $E[Z_1^2] < \infty$
+  \vspace{3pt}
+  \item $E[Z_t | Z_{t-1}, Z_{t-2}, \ldots, Z_1] = 0$
+  \vspace{2pt}
+  \item $\frac{1}{T} \sum_{t=1}^T Z_t^2 \xrightarrow{p} E[Z_1^2]$
+\end{itemize}
+then $\frac{1}{\sqrt{T}} \sum_{t=1}^T Z_t \xrightarrow{d} N(0, E[Z_1^2])$ as $T \rightarrow \infty$
+
+% \vfill\null
+% \columnbreak
+
+\section{IV}
+
+Model: $Y_i = X_i'\beta + U_i$
+
+Assumptions: 
+\begin{itemize}
+  \item Validity of instrument
+  \begin{itemize}
+    \item Exogeneity: $E[U | Z] = 0$
+    \item Relevance: $E[Z X']$ and $\sum_{i=1}^n Z_i X_i'$ are invertible
+  \end{itemize}
+  \item $E[|Y|^2 + ||X||^2 + ||Z||^2] < \infty$
+  \item $\{ (Y_i, X_i', Z_i') \}$ are i.i.d.
+\end{itemize}
+
+IV estimator: $\hat{\beta}_{IV} = (\sum_{i=1}^n Z_i X_i')^{-1} (\sum_{i=1}^n Z_i Y_i')$
+
+\subsection{Small sample property}
+Model: $Y_i = \beta_0 + X_i \beta_1 + U_i$
+
+\hspace{24pt} $X_i = \pi_0 + Z_i \pi_1 + V_i$
+
+\vspace{3pt}
+\hspace{24pt} $
+  \begin{pmatrix}
+    U_i \\ 
+    V_i
+  \end{pmatrix} \bigg| \enspace Z_i \sim N \left( 
+    \begin{pmatrix}
+      0 \\ 
+      0
+    \end{pmatrix}, 
+    \begin{pmatrix}
+      \sigma_u^2 & \sigma_{uv} \\ 
+      \sigma_{uv} & \sigma_v^2
+    \end{pmatrix} \right)
+$
+\vspace{3pt}
+
+\then $E[\hat{\beta}_{IV} | \mathbbmss{X}, \mathbbmss{Z}] = \beta + \frac{\sigma_{uv}}{\sigma_v^2} \frac{\nu}{\frac{\hat{\pi}_1}{se(\hat{\pi}_1)} + \nu}$, where $\nu \sim N(0, 1)$
+
+\subsection{Large sample property}
+
+Large sample approximation is reasonable depends on both 
+\begin{itemize}
+  \item sample size $n$ (the bigger, the better), and
+  \item the covariance between the instrument and endogenous regressor $\pi_1$ (the bigger, the better)
+\end{itemize}
+
+Which means there's a need of testing whether the instrument is relevant (whether $\pi_1 \neq 0$)
+
+\begin{adjustwidth}{.3cm}{0cm}
+  Model: $X_1 = Z_1 \pi_1 + X_2' \pi_2 + V$. Let $\hat{\pi}_1$ be OLS estimate of $\pi_1$. 
+
+  Then the F-statistic is $F = \frac{(\hat{\pi}_1 - 0)^2}{se({\hat{\pi}_1})^2} = \frac{\hat{\pi}_1^2}{se({\hat{\pi}_1})^2}$
+
+  Empirically, if $F \geq 10$, then some rough insurance with nominal $95\%$ conﬁdence intervals have actual coverage of at least $80\%$.
+\end{adjustwidth}
+
+\subsection{Weak instrument}
+
+Model: $Y = X_1 \beta_1 + U$. Weak instrument is $Z_1$. 
+
+Assumptions on $Z_1$: 
+\begin{itemize}
+  \item Exogeneity: $E[U|Z_1] = 0$
+  \item Allow for relevance
+  \item $E[Z_1^2]$ and $\frac{1}{n} \sum_i Z_{1i}^2$ are both non-zero (i.e. invertible)
+\end{itemize}
+
+Under weak instrument, want to test
+\begin{align*}
+  H_0 : \beta_1 = c \quad \quad H_1 : \beta_1 \neq c
+\end{align*}
+
+Identification under $H_0$: $E[Z_1(Y - X_1 c)] = 0$
+
+\then $T = \frac{1}{n} \sum_i Z_{1i} (Y_i - X_{1i}c)$. Reject $H_0$ when $\abs{T}$ is large
+
+Anderson-Rubin Test: 
+
+\begin{adjustwidth}{.3cm}{0cm}
+$AR \coloneqq \frac{\sqrt{n}T}{S} \xrightarrow{d} N(0, 1)$
+
+where $S^2 = \frac{1}{n} Z_{1i}^2 (Y_i - X_{1i}c)^2 \xrightarrow{p} E[Z_1^2 U^2]$
+
+With a size of $5\%$, reject $H_0$ when $\abs{AR} > 1.96$
+
+Confidence set: $\{ c \in \RR : \abs{AR(c)} \leq 1.96 \}$
+\end{adjustwidth}
+
+\subsection{Optimal instrument}
+
+Say optimal instrument is $h^*(Z)$. Identification yields from $E[h(Z) U] = 0$. So 
+$
+  \hat{\beta}^h_{IV} = (\frac{1}{n} \sum_{i} h(Z_i)X_i' )^{-1} \frac{1}{n}\sum_{i} h(Z_i) Y_i
+$
+
+Under homoskedasticity, asymptotic variance (AVAR) is 
+\begin{align*}
+  \Omega^h &= \frac{E[h(Z)^2]}{E[h(Z)X]^2} \sigma_u^2 = \frac{E[h(Z)^2]}{E[h(Z) E[X|Z]]^2} \sigma_u^2 \\
+  &\geq \frac{E[h(Z)^2]}{E[h(Z)]^2 E[E[X|Z]^2]} \sigma_u^2 = \frac{\sigma_u^2}{E[E[X|Z]^2]}
+\end{align*}
+To achieve the lower bound of AVAR, 
+$
+  h^*(Z) = E[X|Z]
+$
+
+\subsection{Random coefficient model}
+
+Model: $Y = X'\beta_0 \cdot U = X'\beta_0 + X'\beta_0 \cdot (U - 1)$
+
+Assumptions: 
+\begin{itemize}
+  \item $E[U|Z] = 1$, and $E[ZX']$ invertible
+  \item $Z$ independent of $Y$
+  \item Let $X = (1, X)'$, $Z = (1, Z)'$, $Z \in \{ 0, 1 \}$, $X \in \{ 0, 1 \}$
+\end{itemize}
+\begin{align*}
+  \hat{\beta}_{IV} \xrightarrow{p} \frac{Cov(Z, Y)}{Cov(Z, X)} = \frac{E[Y|Z = 1] - E[Y|Z = 0]}{E[X|Z = 1] - E[X|Z = 0]}
+\end{align*}
+For binary $X$, its response to $Z$ given unobservable $U$ is $X_U(Z)$
+\begin{center}
+  \begin{tabular}{c| c c}
+    \toprule
+    & $X_U(0) = 0$ & $X_U(0) = 1$ \\
+    \midrule
+    $X_U(1) = 0$ & Never taking & Defying \\
+    $X_U(1) = 1$ & Complying & Always taking \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+Assume no defyers, and $Pr(\text{Complying}) > 0$, then
+\begin{align*}
+  &E[X|Z = 1] - E[X|Z = 0] = E[X_U(1) - X_U(0)] \\ 
+  &= Pr(X_U(1) - X_U(0) = 1) - Pr(X_U(1) - X_U(0) = -1) \\
+  &= Pr(\text{Complying})\\ 
+  &E[Y|Z = 1] - E[Y|Z = 0] = E[Y_U(1)X_U(1) + Y_U(0)(1-X_U(1))] \\
+  &\quad - E[Y_U(1)X_U(0) + Y_U(0)(1-X_U(0))] \tag{since $Y = Y_U(1)X + Y_U(0)(1-X)$}\\
+  &= E[(Y_U(1) - Y_U(0))(X_U(1) - X_U(0))] \\ 
+  &= E[(Y_U(1) - Y_U(0))|X_U(1) - X_U(0) = 1] \times Pr(\text{Complying})
+\end{align*}
+Thus, $\hat{\beta}_{IV} \xrightarrow{p} E[\underbrace{(Y_U(1) - Y_U(0))}_{\text{mean response of $Y$ to $X$}}|\underbrace{X_U(1) - X_U(0) = 1}_{\text{for complyers}}]$
+
+% \vfill\null
+% \columnbreak
+
+\section{Time Series}
+
+\subsection{TS Models}
+\begin{itemize}
+  \item Static: $Y_t = \alpha_0 + X_t' \delta_0 + U_t$
+  \item FDL($s$): $Y_t = \alpha_0 + X_t' \delta_0 + \ldots + X_{t-s}' \delta_s + U_t$ 
+  \item AR($p$): $Y_t = \alpha_0 + Y_{t-1}\rho_1 + \ldots + Y_{t-p}\rho_p + U_t$
+  \item MA($q$): $Y_t = \e_t + \theta_1 \e_{t-1} + \ldots + \theta_q \e_{t-q}$
+  \item Trend: 
+    \begin{itemize}
+      \item Linear time trend: $Y_t = \beta_0 + \beta_1 t + U_t$
+      \item Exponential trend: $\log(Y_t) = \beta_0 + \beta_1 t + U_t$
+    \end{itemize}
+  \item Seasonality: $Y_t = \alpha_0 + \alpha_1 1_{\{t/12 \text{ is an integer}\}} + U_t$
+\end{itemize}
+
+\subsection{Stationarity}
+\begin{itemize}
+  \item Strict: $(Y_{t_1}, Y_{t_2}, \ldots, Y_{t_k}) \sim (Y_{t_1+l}, Y_{t_2+l}, \ldots, Y_{t_k+l})$
+  
+  \vspace{-1.5pt}
+  (Joint distribution is $t$ independent)
+
+  \item Weak (Covariance): For all $t$, $E[Y_t]$ and $\gamma(k) = Cov(Y_t, Y_{t+k})$ ($\leftarrow$ autocovariance function) are both independent of $t$
+\end{itemize}
+
+\end{multicols}
+
+\end{document}
