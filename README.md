@@ -1,4 +1,4 @@
-# LaTeX-Templates
+# LaTeX Templates
 This repo contains three types of LaTeX templates: 
 * [Academic Journal](https://github.com/scaotravis/LaTeX-Templates/blob/master/Academic-Journal/journal.tex)
   * [Sample bib file](https://github.com/scaotravis/LaTeX-Templates/blob/master/Academic-Journal/bibliography.bib)
