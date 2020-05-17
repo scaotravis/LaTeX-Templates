@@ -14,7 +14,9 @@ Files under the [Symbols](https://github.com/scaotravis/LaTeX-Templates/tree/mas
 All LaTeX templates in this repo will read image references from a subfolder `figures`
 
 If you'd rather not have such setting, remove or comment out the following line 
-```\graphicspath{{./figures/}}```
+```
+\graphicspath{{./figures/}}
+```
 
 # Resources to Get Started with LaTeX
 * [Getting started with TeX, LaTeX, and friends](https://www.tug.org/begin.html)
