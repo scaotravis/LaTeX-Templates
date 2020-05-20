@@ -21,6 +21,6 @@ If you'd rather not have such setting, remove or comment out the following line
 \graphicspath{{./figures/}}
 ```
 
-# Resources to Get Started with LaTeX
+# Resources on Getting Started with LaTeX
 * [Getting started with TeX, LaTeX, and friends](https://www.tug.org/begin.html)
 * [Overleaf tutorials](https://www.overleaf.com/learn/latex/Tutorials)
