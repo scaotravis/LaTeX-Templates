@@ -1,0 +1,283 @@
+\ProvidesPackage{preamble}
+
+% The following LaTeX setup is built upon a version from Rebekah Dix (GitHub: @rebekahanne)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Packages import
+
+% AMS 
+\usepackage{amsmath, amssymb, amsthm, amsbsy}
+% Math
+\usepackage{mathtools}
+\usepackage{xparse}
+% Geometry
+\usepackage{geometry}
+% Colors
+\usepackage[usenames,dvipsnames]{xcolor}
+% Figures
+\usepackage{float}
+\usepackage{graphicx}
+% Multi column lists
+\usepackage{multicol}
+% Subfigures
+\usepackage{caption}
+\usepackage{subcaption}
+% Caligraphic
+\usepackage{mathrsfs}
+\usepackage{bbm}
+% Bold
+\usepackage{bm}
+% Spacing 
+\usepackage{setspace}
+% Backslash box
+\usepackage{diagbox}
+% Multirow in table
+\usepackage{multirow}
+% Indent
+\usepackage{indentfirst}
+% Appendix
+\usepackage[toc,page]{appendix}
+% Equation numbering
+\numberwithin{equation}{section}
+% Use more than one optional parameter in a new commands
+\usepackage{xargs}
+% Change left or right spacing
+\usepackage{changepage}
+% Tables
+\usepackage{booktabs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Document settings
+
+% Figure path
+\graphicspath{{./figures/}}
+% Allow pages to break inside long equation environments
+\allowdisplaybreaks
+% Font
+\usepackage{mathpazo} 
+\linespread{1.05}
+% Geometry
+\geometry{left=.5in,right=.5in,top=.5in,bottom=.5in}
+% Counters
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
+% Pretty lists
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=-2pt,topsep=2pt}
+\setlist[itemize]{itemsep=-2pt,topsep=2pt}
+\setlist[enumerate,1]{label=(\roman*)}
+% Footnote symbol
+\usepackage{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% Cheatsheet specific styles
+
+% Turn off header and footer
+\pagestyle{empty}
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}
+                        {-1ex plus -.5ex minus -.2ex}
+                        {0.5ex plus .2ex}
+                        {\vspace{.8cm}\normalfont\large\bfseries\underline}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}
+                           {-1explus -.5ex minus -.2ex}
+                           {0.5ex plus .2ex}{\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}
+                              {-1ex plus -.5ex minus -.2ex}
+                              {1ex plus .2ex}
+                              {\normalfont\small\bfseries}}
+\makeatother
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+% Tighten up space
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Boxed-up theorems
+\usepackage[nobreak=true,align=center,userdefinedwidth=30em,linewidth=1pt]{mdframed}
+
+% Theorem style
+\theoremstyle{definition}
+\mdfdefinestyle{tightTop}{
+    linecolor=black,
+    linewidth=.7pt,
+    innertopmargin=0pt,
+    nobreak=false
+}
+
+% Boxed-up theorems
+\newmdtheoremenv[style=tightTop]{definition}{\color{MidnightBlue}{\textbf{Definition}}}[subsection]
+\newmdtheoremenv[style=tightTop]{theorem}{\color{Maroon}{\textbf{Theorem}}}[subsection]
+\newmdtheoremenv[style=tightTop]{lemma}[theorem]{\color{ForestGreen}{\textbf{Lemma}}}
+\newmdtheoremenv[style=tightTop]{proposition}[theorem]{\color{ForestGreen}{\textbf{Proposition}}}
+\newmdtheoremenv[style=tightTop]{corollary}[theorem]{\color{ForestGreen}{\textbf{Corollary}}}
+\newmdtheoremenv[style=tightTop]{modelenvironment}{\color{MidnightBlue}{\textbf{Model Environment}}}[section]
+
+% Generic box
+\newenvironment{boxedup}{\begin{mdframed}[style=tightTop, innertopmargin=8pt]}{\end{mdframed}}
+
+% Non-boxed-up theorems
+\newtheorem{claim}{\color{ForestGreen}{\textbf{Claim}}}
+\newtheorem{axiom}[theorem]{\color{ForestGreen}{\textbf{Axiom}}}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{example}{\color{WildStrawberry}Example}[subsection]
+\newtheorem{assumption}{Assumption}[subsection]
+\newtheorem{condition}[assumption]{Condition}
+\newtheorem*{solution}{\color{Goldenrod}Solution}
+\newtheorem{exercise}{\color{YellowOrange}Exercise}[subsection]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Math macros
+
+% Math brackets
+\newcommand\parens[1]{\left( #1 \right)}
+\newcommand\squares[1]{\left[ #1 \right]}
+\newcommand\braces[1]{\left\{ #1 \right\}}
+\newcommand\angles[1]{\left\langle #1 \right\rangle}
+\newcommand\ceil[1]{\left\lceil #1 \right\rceil}
+\newcommand\floor[1]{\left\lfloor #1 \right\rfloor}
+\newcommand\abs[1]{\left| #1 \right|}
+\newcommand\dabs[1]{\left\| #1 \right\|}
+\newcommand\vect[1]{\mathbf{#1}}
+\newcommand\closure[1]{\overline{#1}}
+\newcommand\pset[1]{\mathcal{P}\left(#1\right)}
+\newcommand\inv[1]{#1^{-1}}
+\newcommand\norm[1]{\lVert#1\rVert}
+
+% Set builder (use \Set ultimately and separate by ;)
+\DeclarePairedDelimiterX{\set}[1]{\{}{\}}{\setargs{#1}}
+\NewDocumentCommand{\setargs}{>{\SplitArgument{1}{;}}m}
+{\setargsaux#1}
+\NewDocumentCommand{\setargsaux}{mm}
+{\IfNoValueTF{#2}{#1} {#1\nonscript\:\delimsize\vert\allowbreak\nonscript\:\mathopen{}#2}}%
+\def\Set{\set*}%
+
+% Proof logic
+\newcommand{\then}{$\Rightarrow$ }
+\newcommand{\rd}{$\Rightarrow$ }
+\newcommand{\ld}{$\Leftarrow$ }
+
+% argmax and min
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+
+% Misc math
+\newcommand{\st}{\ensuremath{\ \quad \mathrm{s.t.} \quad \ }}
+\newcommand{\1}{\mathbbm 1}
+\newcommand{\given}{\, | \,}
+
+% Shortcut greek
+\def\a{\alpha}
+\def\b{\beta}
+\def\g{\gamma}
+\def\D{\Delta}
+\def\d{\delta}
+\def\z{\zeta}
+\def\k{\kappa}
+\def\l{\lambda}
+\def\n{\nu}
+\def\r{\rho}
+\def\s{\sigma}
+\def\t{\tau}
+\def\x{\xi}
+\def\w{\omega}
+\def\W{\Omega}
+
+% Nice greek
+\newcommand{\p}{\varphi}
+\newcommand{\e}{\varepsilon}
+
+% Shorcut vectors
+\def\vx{\vect{x}}
+\def\vy{\vect{y}}
+\def\va{\vect{a}}
+\def\vb{\vect{b}}
+
+% Shortcut space / field notations
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\PP}{\mathbbm P}
+\newcommand{\EE}{\mathbbm E}
+\newcommand{\TT}{\mathbbm T}
+\newcommand{\VV}{\mathbbm V}
+\newcommand{\QQ}{\mathbbm Q}
+\newcommand{\WW}{\mathbbm W}
+\newcommand{\ZZ}{\mathbbm Z}
+\newcommand{\KK}{\mathbbm K}
+\renewcommand{\SS}{\mathbbm S}
+
+% Expectation/Probability
+\newcommand{\ee}{\mathbbmss{E}}
+\newcommand{\pp}{\mathbbmss{P}}
+
+% Curly letters
+\newcommand{\cC}{\mathscr C}
+\newcommand{\iI}{\mathscr I}
+\newcommand{\eE}{\mathscr E}
+\newcommand{\fF}{\mathscr F}
+\newcommand{\rR}{\mathscr R}
+\newcommand{\sS}{\mathscr S}
+\newcommand{\lL}{\mathscr L}
+\newcommand{\cG}{\mathscr G}
+
+\newcommand{\aA}{\mathcal A}
+\newcommand{\pP}{\mathcal P}
+\newcommand{\vV}{\mathcal V}
+\newcommand{\dD}{\mathcal D}
+\newcommand{\mM}{\mathcal M}
+\newcommand{\oO}{\mathcal O}
+\newcommand{\gG}{\mathcal G}
+\newcommand{\hH}{\mathcal H}
+\newcommand{\tT}{\mathcal T}
+\newcommand{\bB}{\mathcal B}
+
+% Misc operators
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\graph}{graph}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\Prob}{Prob}
+\DeclareMathOperator{\determinant}{det}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\cov}{Cov}
+\DeclareMathOperator{\corr}{Corr}
+\DeclareMathOperator{\var}{Var}
+\DeclareMathOperator{\mse}{mse}
+\DeclareMathOperator{\se}{se}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\range}{rng}
+\DeclareMathOperator{\kernel}{ker}
+\DeclareMathOperator{\dimension}{dim}
+\DeclareMathOperator{\bias}{bias}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ran}{ran}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Cl}{Cl}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% References
+
+% Hyperlinks
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
