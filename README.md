@@ -2,23 +2,23 @@
 This repo contains three types of LaTeX templates: 
 * Academic Journal
   * [TeX file](https://github.com/scaotravis/LaTeX-Templates/blob/master/Academic-Journal/journal.tex)
-  * [Document style](https://github.com/scaotravis/LaTeX-Templates/blob/master/Academic-Journal/preamble.sty)
+  * [Document style](https://github.com/scaotravis/LaTeX-Templates/blob/master/Academic-Journal/journal.sty)
   * [Sample bib (citation source) file](https://github.com/scaotravis/LaTeX-Templates/blob/master/Academic-Journal/bibliography.bib)
   * [PDF preview](https://github.com/scaotravis/LaTeX-Templates/blob/master/Academic-Journal/journal.pdf)
 * Problem Set
   * [TeX file](https://github.com/scaotravis/LaTeX-Templates/blob/master/Problem-Set/problem-set.tex)
-  * [Document style](https://github.com/scaotravis/LaTeX-Templates/blob/master/Problem-Set/preamble.sty)
+  * [Document style](https://github.com/scaotravis/LaTeX-Templates/blob/master/Problem-Set/problem-set.sty)
   * [PDF preview](https://github.com/scaotravis/LaTeX-Templates/blob/master/Problem-Set/problem-set.pdf)
 * Cheat Sheet
   * [TeX file](https://github.com/scaotravis/LaTeX-Templates/blob/master/Cheat-Sheet/cheat-sheet.tex)
-  * [Document style](https://github.com/scaotravis/LaTeX-Templates/blob/master/Cheat-Sheet/preamble.sty)
+  * [Document style](https://github.com/scaotravis/LaTeX-Templates/blob/master/Cheat-Sheet/cheat-sheet.sty)
   * [PDF preview](https://github.com/scaotravis/LaTeX-Templates/blob/master/Cheat-Sheet/cheat-sheet.pdf)
 
 Files under the [Symbols](https://github.com/scaotravis/LaTeX-Templates/tree/master/Symbols) folder also contain references to some common math symbols. 
 
 # Notes
-1. All TeX styles are defined in `preamble.sty`. Make sure this file is in the same folder with your `.tex` file, and make sure your TeX document calls `\usepackage{preamble}`
-2. TeX files in this repo will read image references from a subfolder `figures`. If you'd rather not have such setting, remove or comment out the following line in the respective `preamble.sty`
+1. All TeX styles are defined in a `.sty` file
+2. TeX files in this repo will read image references from a subfolder `figures`. If you'd rather not have such setting, remove or comment out the following line in the respective `.sty` file
     ```
     \graphicspath{{./figures/}}
     ```
