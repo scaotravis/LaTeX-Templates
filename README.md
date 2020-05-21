@@ -17,7 +17,7 @@ This repo contains three types of LaTeX templates:
 Files under the [Symbols](https://github.com/scaotravis/LaTeX-Templates/tree/master/Symbols) folder also contain references to some common math symbols. 
 
 # Notes
-1. All TeX styles are defined in a `.sty` file
+1. All TeX styles are defined in a `.sty` file, which needs to be placed in the same folder with the `.tex` file
 2. TeX files in this repo will read image references from a subfolder `figures`. If you'd rather not have such setting, remove or comment out the following line in the respective `.sty` file
     ```
     \graphicspath{{./figures/}}
