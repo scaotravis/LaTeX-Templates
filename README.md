@@ -17,8 +17,8 @@ This repo contains three types of LaTeX templates:
 Files under the [Symbols](https://github.com/scaotravis/LaTeX-Templates/tree/master/Symbols) folder also contain references to some common math symbols. 
 
 # Notes
-1. To save space in the TeX document, all TeX styles are defined in `preamble.sty`
-2. All templates in this repo will read image references from a subfolder `figures` If you'd rather not have such setting, remove or comment out the following line in the respective `preamble.sty`
+1. All TeX styles are defined in `preamble.sty`
+2. TeX files in this repo will read image references from a subfolder `figures`. If you'd rather not have such setting, remove or comment out the following line in the respective `preamble.sty`
     ```
     \graphicspath{{./figures/}}
     ```
