@@ -17,7 +17,7 @@ This repo contains three types of LaTeX templates:
 Files under the [Symbols](https://github.com/scaotravis/LaTeX-Templates/tree/master/Symbols) folder also contain references to some common math symbols. 
 
 # Notes
-1. All TeX styles are defined in `preamble.sty`. Make sure this file is in the same folder as your `.tex` file, and make sure your TeX document calls `\usepackage{preamble}`
+1. All TeX styles are defined in `preamble.sty`. Make sure this file is in the same folder with your `.tex` file, and make sure your TeX document calls `\usepackage{preamble}`
 2. TeX files in this repo will read image references from a subfolder `figures`. If you'd rather not have such setting, remove or comment out the following line in the respective `preamble.sty`
     ```
     \graphicspath{{./figures/}}
