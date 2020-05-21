@@ -6,26 +6,31 @@
 \begin{document}
 
 \begin{titlepage}
-\title{Title}
-\author{First Last\thanks{ABC}}
-\date{\small \today}
-\maketitle
-\bigskip
-\begin{abstract}
-\noindent Words words words\\
-\vspace{0in}\\
-\noindent\textbf{Keywords:} ABC
+  \title{Title}
+  \author{First Last\thanks{ABC}}
+  \date{\small \today}
+  \maketitle
+  
+  \bigskip
 
-\bigskip
-\end{abstract}
-\setcounter{page}{0}
-\thispagestyle{empty}
+  \begin{abstract}
+    \noindent Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+
+    \bigskip
+
+    \noindent\textbf{Keywords:} ABC
+  \end{abstract}
+
+  % no page number on title page
+  \setcounter{page}{0}
+  \thispagestyle{empty}
 \end{titlepage}
-\pagebreak \newpage
+
+\newpage
 
 \section{Introduction} \label{sec:Introduction}
 
-Something something \cite{koenker2001quantile}. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat (\cite{koenker2001quantile}). 
 
 \section{Methodology} \label{sec:Methodology}
 
@@ -37,18 +42,9 @@ Something something \cite{koenker2001quantile}.
 
 \section{Conclusion} \label{sec:Conclusion}
 
-\newpage
+\newpage \printbibliography \label{sec:References}
 
-\onehalfspacing
-
-\label{sec:References}
-
-\printbibliography
-
-\clearpage
-
-\section*{Tables} \label{sec:tab}
-\addcontentsline{toc}{section}{Tables}
+\newpage \section*{Tables} \label{sec:tab}
 
 \begin{table}[hp]
   \centering
@@ -57,10 +53,6 @@ Something something \cite{koenker2001quantile}.
   \label{tab:1}
 \end{table}
 
-\clearpage
-
-\section*{Figures} \label{sec:fig}
-\addcontentsline{toc}{section}{Figures}
-
+\newpage \section*{Figures} \label{sec:fig}
 
 \end{document}
