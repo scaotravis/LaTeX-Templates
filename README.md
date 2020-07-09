@@ -14,7 +14,7 @@ This repo contains three types of LaTeX templates:
   * [Document style](https://github.com/scaotravis/LaTeX-Templates/blob/master/Cheat-Sheet/cheat-sheet.sty)
   * [PDF preview](https://github.com/scaotravis/LaTeX-Templates/blob/master/Cheat-Sheet/cheat-sheet.pdf)
 
-Files under the [Symbols](https://github.com/scaotravis/LaTeX-Templates/tree/master/Symbols) folder also contain references to some common math symbols. 
+Files under the [Tips](https://github.com/scaotravis/LaTeX-Templates/tree/master/Tips) folder also contain references to some common math symbols and some helpful tips to LaTeX. 
 
 # Notes
 1. All TeX styles are defined in a `.sty` file, which needs to be placed in the same folder with the `.tex` file
