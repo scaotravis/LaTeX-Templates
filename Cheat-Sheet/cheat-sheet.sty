@@ -46,6 +46,8 @@
 \usepackage{changepage}
 % Tables
 \usepackage{booktabs}
+% Caption customization
+\usepackage[margin=1.5cm]{caption}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -71,6 +73,8 @@
 % Footnote symbol
 \usepackage{footmisc}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+% Pretty underscore
+\def\_{\leavevmode \ifmmode\else\kern0.1em \fi \vbox{\hrulewidth0.5em}\kern0.1em}
 
 % Cheatsheet specific styles
 
@@ -159,11 +163,6 @@
 \NewDocumentCommand{\setargsaux}{mm}
 {\IfNoValueTF{#2}{#1} {#1\nonscript\:\delimsize\vert\allowbreak\nonscript\:\mathopen{}#2}}%
 \def\Set{\set*}%
-
-% Proof logic
-\newcommand{\then}{$\Rightarrow$ }
-\newcommand{\rd}{$\Rightarrow$ }
-\newcommand{\ld}{$\Leftarrow$ }
 
 % argmax and min
 \newcommand{\argmax}{\operatornamewithlimits{argmax}}

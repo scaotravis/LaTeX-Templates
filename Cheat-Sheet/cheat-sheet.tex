@@ -122,7 +122,7 @@ Model: $Y_i = \beta_0 + X_i \beta_1 + U_i$
 $
 \vspace{3pt}
 
-\then $E[\hat{\beta}_{IV} | \mathbbmss{X}, \mathbbmss{Z}] = \beta + \frac{\sigma_{uv}}{\sigma_v^2} \frac{\nu}{\frac{\hat{\pi}_1}{se(\hat{\pi}_1)} + \nu}$, where $\nu \sim N(0, 1)$
+$\Rightarrow E[\hat{\beta}_{IV} | \mathbbmss{X}, \mathbbmss{Z}] = \beta + \frac{\sigma_{uv}}{\sigma_v^2} \frac{\nu}{\frac{\hat{\pi}_1}{se(\hat{\pi}_1)} + \nu}$, where $\nu \sim N(0, 1)$
 
 \subsection{Large sample property}
 
@@ -160,7 +160,7 @@ Under weak instrument, want to test
 
 Identification under $H_0$: $E[Z_1(Y - X_1 c)] = 0$
 
-\then $T = \frac{1}{n} \sum_i Z_{1i} (Y_i - X_{1i}c)$. Reject $H_0$ when $\abs{T}$ is large
+$\Rightarrow T = \frac{1}{n} \sum_i Z_{1i} (Y_i - X_{1i}c)$. Reject $H_0$ when $\abs{T}$ is large
 
 Anderson-Rubin Test: 
 
