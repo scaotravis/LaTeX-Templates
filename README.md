@@ -18,9 +18,15 @@ Files under the [Tips](https://github.com/scaotravis/LaTeX-Templates/tree/master
 
 # Notes
 1. All TeX styles are defined in a `.sty` file, which needs to be placed in the same folder with the `.tex` file
-2. TeX files in this repo will read image references from a subfolder `figures`. If you'd rather not have such setting, remove or comment out the following line in the respective `.sty` file
+1. TeX files in this repo will read image references from a subfolder `figures`. If you'd rather not have such setting, remove or comment out the following line in the respective `.sty` file
     ```
     \graphicspath{{./figures/}}
+    ```
+1. `tabular` created by the style files in this repo spreads out vertically a bit for aesthetic reasons (except for in `cheat-sheet.sty` to save space). If you want to modify the amount of vertical spread, change the following lines in the respective `.sty` file: 
+    ```
+    % More spaced out tabular
+    \setlength\extrarowheight{1.2pt}
+    \renewcommand{\arraystretch}{1.2}
     ```
 
 # Resources on Getting Started with LaTeX
