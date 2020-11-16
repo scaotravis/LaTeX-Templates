@@ -69,12 +69,17 @@
 \usepackage{enumitem}
 \setlist[enumerate]{itemsep=-2pt,topsep=2pt}
 \setlist[itemize]{itemsep=-2pt,topsep=2pt}
-\setlist[enumerate,1]{label=(\roman*)}
+% Pretty underscore
+\def\_{\leavevmode \ifmmode\else\kern0.1em \fi \vbox{\hrulewidth0.5em}\kern0.1em}
 % Footnote symbol
 \usepackage{footmisc}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
-% Pretty underscore
-\def\_{\leavevmode \ifmmode\else\kern0.1em \fi \vbox{\hrulewidth0.5em}\kern0.1em}
+% Game tree
+\usepackage{tikz}
+\usetikzlibrary{calc}
+% More spaced out tabular
+\setlength\extrarowheight{1.2pt}
+\renewcommand{\arraystretch}{1.2}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

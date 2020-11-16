@@ -47,12 +47,35 @@ Non blandit massa enim nec dui nunc mattis enim. At erat pellentesque adipiscing
 \newpage \section*{Tables} \label{sec:tab}
 
 \begin{table}[H]
-  \centering
-  \includegraphics[width=4cm,keepaspectratio]{tab1.png}
-  \caption{Description}
-  \label{tab:1}
+    \centering
+    \begin{tabular}{lcccccc}
+        \hline
+        & \multirow{2}{*}{Mean} & \multirow{2}{*}{Sigma} & \multicolumn{4}{c}{Interaction with Demographic Variables}\\
+        \cline{4-7}
+        & &  & log(Income) & log(Income)$^2$ & Age & Child \\
+         \hline
+         Constant & -1.8569 & 0.3772 & 3.0888 & - & 1.1859 & - \\
+         & (0.2586) & (0.1295) & (1.2072) &  & (1.0180) &  \\ 
+         Price & -32.4374 & 1.8480 & 16.5980 & -0.6590 & - & 11.6245 \\ 
+         & (7.7600) & (1.0779) & (172.7217) & (8.9753) & & (5.2195) \\ 
+         Sugar & 0.1441 & -0.0035 & -0.1925 & - & 0.0296 & -
+         \\ 
+         & (0.2586) & (0.0124) & (0.0451) & & (0.0363) & \\ 
+         Mushy & 0.7725 & 0.0810 & 1.4684 & - & -1.5143 & - \\ 
+         & (0.0129) & (0.2065) & (0.6998) & & (1.1071) & \\ 
+          \hline
+    \end{tabular}
+    \caption{Regression results from BLP mixed logit model} 
+    \label{blp-result}
 \end{table}
 
 \newpage \section*{Figures} \label{sec:fig}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=4cm,keepaspectratio]{tab1.png}
+    \caption{Description}
+    \label{fig:1}
+\end{figure}
 
 \end{document}
