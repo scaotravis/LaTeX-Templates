@@ -1,0 +1,357 @@
+\documentclass[aspectratio=169]{beamer}
+
+\title{Ownership Consolidation and Product Characteristics: \\
+A Study of the US Daily Newspaper Market}
+\subtitle{by Ying Fan (2013 AER)}
+\date{\DTMdisplaydate{2020}{12}{10}{-1}}
+\author{XXXX}
+
+\usepackage{presentation}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Overview}
+    \tableofcontents
+\end{frame}
+
+%%%%% Model %%%%%
+\section{Model}
+%================================================%
+\begin{frame}{Model - B. Supply}
+
+	\begin{itemize}
+		\item Sources of profits for a newspaper publisher: 
+		\begin{itemize}
+			\item Selling newspaper to readers $\rightarrow$ \textcolor{blue}{Choose price}
+			\item Selling advertising space to advertisers $\rightarrow$ \textcolor{blue}{Choose advertising rate}
+		\end{itemize}
+		\item \onslide<2->{But since some newspaper characteristics are endogenous, publishers also need to \textcolor{blue}{choose endogenous characteristics}}
+		\item \onslide<3->{Model the supply side as a \textbf{two stage game}: 
+		\begin{itemize}
+			\item First stage: Choose characteristics $x_{jt}$ for newspaper $j$ at year $t$
+			\item Second stage: Choose newspaper prices $p_{jt}^*(\boldsymbol{x})$ and advertising rates $r_{jt}^*(\boldsymbol{x})$
+		\end{itemize}}
+	\end{itemize}
+
+\end{frame}
+%================================================%
+\begin{frame}{Model - B. Supply}
+
+	\uncover<+->{}
+
+	(Suppressing the $t$ subscript for the rest of the supply section)
+
+	\begin{block}{Profit function for newspaper $j$: }
+		\begin{align}
+			\pi_{j}^{I} (\boldsymbol{x_j}) = 
+			\commentmathwithtext<+->[position={(-20:5cm)},
+			append text node style={text=structure,draw=structure,fill=structure!10,line width=1pt,outer sep=3pt,text width=15em},
+			append math node style={outer sep=2pt,fill=structure!10,line width=1pt},
+			append link style={structure,line width=1pt,->},
+			append to style={bend left=10},
+			math color=structure
+			]{
+				\pi_{j}^{II}( p_j^*(\boldsymbol{x}), r_j^*(\boldsymbol{x}); \boldsymbol{x_j})
+			 }{
+				Variable profits from circulation and advertising (preprint + display)
+			} - 
+			\commentmathwithtext<+->[position={(15:3.5cm)},
+			append text node style={text=structure,draw=structure,fill=structure!10,line width=1pt,outer sep=3pt},
+			append math node style={outer sep=2pt,fill=structure!10,line width=1pt},
+			append link style={structure,line width=1pt,->},
+			append to style={bend right=18},
+			math color=structure
+			]{
+				f_C(\boldsymbol{x_j}, \boldsymbol{\nu_j}; \boldsymbol{\tau})
+			 }{
+				Fixed costs
+			}
+		\end{align}
+		\vspace*{-25px}
+		\begin{itemize}
+			\item $\boldsymbol{x_j}$: endogenous newspaper characteristics
+			\item $p_j^*(\boldsymbol{x})$: newspaper price
+			\item $r_j^*(\boldsymbol{x})$: newspaper advertising rate
+			\item $\boldsymbol{\nu}_j$: unobservable cost shocks
+			\item $\boldsymbol{\tau}$: fixed costs parameters
+		\end{itemize}
+	\end{block}
+
+\end{frame}
+%================================================%
+\begin{frame}{Model - B. Supply}
+
+	\begin{align*}
+		\text{Variable profits } \pi_{j}^{II} \begin{cases}
+			\text{Circulation profits} \\ 
+			\text{Display advertising profits} \\
+			\text{Preprint (advertising) profits}
+		\end{cases}
+	\end{align*}
+
+	\begin{figure}
+		\centering
+		\begin{subfigure}[b]{5.5cm}
+			\centering
+			\includegraphics[height=2.9cm,keepaspectratio]{display-ad.jpg}
+			\caption{Display advertising}
+		\end{subfigure}
+		\begin{subfigure}[b]{5.5cm}
+			\centering
+			\includegraphics[height=2.9cm,keepaspectratio]{preprint.png}
+			\caption{Preprint advertising}
+		\end{subfigure}
+	\end{figure}
+
+\end{frame}
+%================================================%
+\begin{frame}{Model - B. Supply}
+	
+	\uncover<+->{}
+
+	\begin{block}{Circulation profits}
+		\begin{itemize}
+			\item Difference between circulation revenue determined by demand and variable costs of printing and delivery
+			\item Model variable costs of printing and delivery in terms of its average: 
+			\begin{align}
+				ac_{j}^{(q)} = \left(\gamma_1 + \gamma_2 f_j + \gamma_3 (x_{1j} + a_j) \right) \log(Q_j)^{\gamma_4} + \omega_j
+			\end{align}
+			where
+			\begin{itemize}
+				\item $f_j$: publication frequency (number of issues per year)
+				\item $(x_{1j} + a_j)$: annual pages ($x_{1j}$ is non-ad pages, $a_j$ is ad pages)
+				\item \highlight<4->{$Q_j$: total circulation}
+				\item $\omega_j$: unobservable factor
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+
+	\onslide<2->{
+	\begin{boxedup}
+		\vspace*{-15px}
+		\begin{align*}
+			\text{Circulation profits} = (p_j - ac_j^{(q)}) \hspace{2px}\commentmathwithtext<3->[position={(23:2cm)},
+			append text node style={text=structure,draw=structure,fill=structure!10,line width=1pt,outer sep=3pt},
+			append math node style={outer sep=1pt,fill=structure!10},
+			append link style={structure,line width=1pt,->},
+			append to style={bend left=18},
+			math color=structure
+			]{
+				q_j
+			}{
+				Quantity demanded for newspaper $j$
+			}
+		\end{align*}
+	\end{boxedup}
+	}
+
+\end{frame}
+%================================================%
+\begin{frame}{Model - B. Supply}
+	
+	$Q_j$ total circulation
+	\begin{itemize}
+		\item $Q_j = q_j$ demand for newspaper $j$ when
+		\begin{itemize}
+			\item $j$'s publisher publishes only one newspaper
+			\item Home counties of $j$'s publisher's other newspapers aren't in the same metropolitan statistical area (MSA) as newspaper $j$
+		\end{itemize}
+		\item Otherwise, $Q_j = $ sum of circulations of $j$'s publisher's all other newspapers whose home counties are in the same MSA as newspaper $j$
+	\end{itemize}
+
+\end{frame}
+%================================================%
+\begin{frame}{Model - B. Supply}
+	
+	\begin{block}{Display advertising profits}
+		\begin{itemize}
+			\item Difference between display advertising demand and costs
+			\item Costs are mainly from two sources: 
+			\begin{itemize}
+				\item Costs of printing ads (included in the circulation profits analysis)
+				\item Marginal advertising sales costs (Bertrand Nash form): 
+				\begin{align*}
+					mc_j^{(a)} = \left( 1 + \frac{1}{\lambda_2} \right) (\bar{\zeta} + \zeta_j) \tag{12}
+				\end{align*}
+				where
+				\begin{itemize}
+					\item $\lambda_2$: price elasticity of demand for display advertising
+					\item $\zeta_j$: mean-zero exogenous random variable
+				\end{itemize}
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+
+	\onslide<2->{
+	\begin{boxedup}
+		\vspace*{-15px}
+		\begin{align*}
+			\text{Display advertising profits} = (r_j -  
+			\commentmathwithtext<4->[position={(20:3cm)},
+			append text node style={text=structure,draw=structure,fill=structure!10,line width=1pt,outer sep=3pt,text width=3cm},
+			append math node style={outer sep=1pt,fill=structure!10},
+			append link style={structure,line width=1pt,->},
+			append to style={bend right=18},
+			math color=structure
+			]{
+				mc_j^{(a)}
+			 }{
+				Assumed constant marginal costs for simplicity
+			} ) \hspace{2px} 
+			\commentmathwithtext<3->[position={(9:-4cm)},
+			append text node style={text=structure,draw=structure,fill=structure!10,line width=1pt,outer sep=3pt},
+			append math node style={outer sep=-2pt,fill=structure!10},
+			append link style={structure,line width=1pt,->},
+			append to style={bend right=10},
+			math color=structure
+			]{
+				a_j
+			 }{
+				Quantity demanded for display ad for newspaper $j$
+			} \tag{13}
+		\end{align*}
+	\end{boxedup}
+	}
+
+\end{frame}
+%================================================%
+\begin{frame}{Model - B. Supply}
+	
+	\begin{block}{Preprint advertising profits}
+		\begin{itemize}
+			\item Essentially a delivery service provided by newspapers
+			\item Author didn't observe advertising rate for preprints, so preprint profits are simply assumed to be a quadratic function of circulation
+		\end{itemize}
+	\end{block}
+
+	\begin{boxedup}
+		\vspace*{-15px}
+		\begin{align}
+			\text{Preprint advertising profits} = \mu_1 q_j + \frac{1}{2} \mu_2 q_j^2
+		\end{align}
+	\end{boxedup}
+
+	\onslide<2->{
+	\begin{itemize}
+		\item One major limitation admitted by the author -- with better data on preprint advertising rate, preprint profits can be more accurately modeled. 
+	\end{itemize}
+	}
+
+\end{frame}
+%================================================%
+\begin{frame}{Model - B. Supply}
+	
+	\setcounter{equation}{13}
+	\begin{block}{Bring all parts together}
+		\begin{align}
+			\pi_{j}^{II}( p_j^*(\boldsymbol{x}), r_j^*(\boldsymbol{x}); \boldsymbol{x_j}) = \underbrace{\left(p_j - ac_j^{(q)} \right) q_j}_{\text{Circulation}} + \underbrace{\left(r_j - mc_j^{(a)} \right) a_j}_{\text{Display ad}} + \underbrace{\left( \mu_1 q_j + \frac{1}{2} \mu_2 q_j^2 \right)}_{\text{Preprint ad}}
+		\end{align}
+		\vspace*{-20px}
+	\end{block}
+
+	\begin{block}{Fixed costs}
+		\begin{itemize}
+			\item Fixed costs captures the costs of choosing specific product characteristics that are independent of circulation or advertising quantity
+			\item Approximated using a quadratic function, then for newspaper $j$, the slope of the $k$th endogenous characteristic $x_{kj}$ is
+			\begin{align}
+				\frac{\partial f_c}{\partial x_{kj}} = \tau_{k0} + \tau_{k1}x_{kj} + \nu_{kj}
+			\end{align}
+		\end{itemize}
+	\end{block}
+
+\end{frame}
+%================================================%
+\begin{frame}{Model - B. Supply}
+	
+	\begin{block}{Aside: Potential of collusion in data}
+		\begin{itemize}
+			\item Some newspaper publishers in the data are in a \textbf{Joint Operation Agreements (JOA)}
+			\item Business in JOA combine business operations, but still maintain separate and competitive editorial operations
+			\onslide<2->{
+			\item For such businesses, the author assumed
+			\begin{itemize}
+				\item In the first stage, publishers in JOA choose their characteristics separately
+				\item In the second stage, all publishers in the same JOA choose prices and advertising rates to maximize joint profits for given newspaper characteristics
+			\end{itemize}
+			}
+		\end{itemize}
+	\end{block}
+
+\end{frame}
+%================================================%
+\begin{frame}{Model - C. Necessary Equilibrium Conditions}
+	
+	Solving the equilibrium backwards
+	\begin{block}{Stage 2: Choose $p_{jt}$ and $r_{jt}$ by taking FOCs of $\pi_{jt}^{I}$, holding $\boldsymbol{x}_{jt}$ constant}
+		\begin{align}
+			r_{jt} &= \bar{\zeta} + \frac{\gamma_3}{ 1 + \frac{1}{\lambda_2} } \log(Q_{jt})^{\gamma_4} q_{jt} + \zeta_{jt} \\ 
+			\boldsymbol{p} &= \boldsymbol{\Delta}^{-1} \boldsymbol{q} - 
+			\commentmathwithtext<2->[position={(9:-4cm)},
+			append text node style={text=structure,draw=structure,fill=structure!10,line width=1pt,outer sep=3pt},
+			append math node style={outer sep=-2pt,fill=structure!10},
+			append link style={structure,line width=1pt,->},
+			append to style={bend right=10},
+			math color=structure
+			]{
+				\left[ \boldsymbol{\Lambda} + (\mu_1 + \mu_2 \boldsymbol{q}) \right]
+			 }{
+				Effect of circulation on total advertising
+			}
+			 + 
+			\commentmathwithtext<3->[position={(-120:-4cm)},
+			append text node style={text=structure,draw=structure,fill=structure!10,line width=1pt,outer sep=3pt,text width=4.5cm},
+			append math node style={outer sep=-2pt,fill=structure!10},
+			append link style={structure,line width=1pt,->},
+			append to style={bend left=10},
+			math color=structure
+			]{
+				\boldsymbol{\Gamma} \boldsymbol{q}
+			 }{
+				Effect of economy of scale and scope in printing and delivering newspapers
+			} + \boldsymbol{ac}^{(q)}
+		\end{align}
+		\vspace*{-20px}
+		\begin{align*}
+			\boldsymbol{\Delta}_{hj} = \begin{cases}
+				-\frac{\partial q_j}{\partial p_h} &\text{same publisher for $h, j$} \\
+				0 &\text{otherwise}
+			\end{cases} \qquad 
+			\boldsymbol{\Gamma}_{hj} = \begin{cases}
+				-\frac{\partial ac_j^{(q)}}{\partial Q_j} &\parbox[m]{.25\textwidth}{same publisher \& in \newline the same MSA for $h, j$} \\ 
+				0 &\text{otherwise}
+			\end{cases}
+		\end{align*}
+		\vspace*{-15px}
+		\begin{align*}
+			\boldsymbol{\Lambda}_j = - \frac{1}{\lambda_2} \frac{\partial a_j}{\partial q_j} r_j
+		\end{align*}
+		\vspace*{-20px}
+	\end{block}
+
+\end{frame}
+%================================================%
+\begin{frame}{Model - C. Necessary Equilibrium Conditions}
+	
+	\begin{block}{Stage 1: Choose the $k$th endogenous characteristics $x_{kjt}$ by taking FOC of $\pi_{jt}^{I}$}
+		\begin{align}
+			\sum_{h \in \mathcal{J}_{mt}} \left( \frac{\partial \pi_{ht}^{II}}{\partial x_{kjt}} + \sum_{j' \in \mathcal{J}_{g(jt)}} \frac{\partial \pi_{ht}^{II}}{\partial p_{j't}} \frac{\partial p^{*}_{j't}}{\partial x_{kjt}}\right) = \tau_{k0} + \tau_{k1} x_{kjt} + \nu_{kjt}
+		\end{align}
+		where
+		\begin{itemize}
+			\item $\mathcal{J}_{mt}$: set of newspapers from $j$'s publisher $m$ in the year $t$
+			\item $\mathcal{J}_{g(jt)}$: set of all newspapers that are interacting in the game with newspaper $j$ in year $t$
+		\end{itemize}
+	\end{block}
+
+\end{frame}
+%================================================%
+
+\begin{frame}
+    \begin{center}
+        \LARGE{Thank You!}
+    \end{center}
+\end{frame}
+
+\end{document}

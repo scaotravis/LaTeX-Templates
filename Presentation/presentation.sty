@@ -1,0 +1,736 @@
+\ProvidesPackage{presentation}
+
+% The following LaTeX setup is built upon a version from Rebekah Dix (GitHub: @rebekahanne)
+% This setup also contains beamerhighlight.sty (Copyright 2012 Thierry)
+
+% Beamer
+\usetheme[
+  outer/progressbar=frametitle,
+  %outer/numbering=none
+]{metropolis}
+
+% Force default beamer font
+\usefonttheme{default}
+
+% Datetime
+\usepackage[USenglish]{babel}
+\usepackage[useregional]{datetime2}
+\usepackage{dutchcal}
+
+% Colors
+\usepackage{xcolor}
+\definecolor{maroon}{rgb}{0.5, 0.0, 0.0}
+\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+\definecolor{cadetgrey}{rgb}{0.57, 0.64, 0.69}
+
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{frametitle}{bg=darkmidnightblue}
+\setbeamercolor{progress bar}{fg=cadetgrey, bg=cadetgrey}
+
+% Subfigures
+\usepackage{caption}
+\usepackage{subcaption}
+
+% tikz
+\usepackage{tikz}
+\usepackage{mathdots}
+\usepackage{yhmath}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{siunitx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usetikzlibrary{fadings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shadows.blur}
+\usetikzlibrary{shapes}
+\usetikzlibrary{decorations}
+\usetikzlibrary{decorations.pathmorphing}
+
+% Generic box
+\usepackage[nobreak=true,align=center,userdefinedwidth=30em,linewidth=1pt]{mdframed}
+
+\theoremstyle{definition}
+\mdfdefinestyle{tightTop}{
+    linecolor=black,
+    linewidth=.7pt,
+    innertopmargin=0pt,
+    nobreak=false
+}
+
+\newenvironment{boxedup}{\begin{mdframed}[style=tightTop, innertopmargin=8pt]}{\end{mdframed}}
+
+% AMS
+\usepackage{amsmath, amssymb, amsthm, amsbsy}
+
+% Caligraphic
+\usepackage{mathrsfs}
+\usepackage{bbm}
+
+% Math imports
+\usepackage{mathtools}
+\usepackage{xparse}
+\usepackage{xfrac}
+
+% Figure path
+\graphicspath{{./figures/}}
+
+% Underbrace
+\newcommand\ub[2]{\underbrace{#1}_{#2}}
+\newcommand\ubt[2]{\underbrace{#1}_{\text{#2}}}
+\newcommand\obt[2]{\overbrace{#1}^{\text{#2}}}
+
+% Textcolors
+\newcommand\tcb[1]{\textcolor{blue}{#1}}
+\newcommand\tclb[1]{\textcolor{lightblue}{#1}}
+\newcommand\tcr[1]{\textcolor{ruby}{#1}}
+\newcommand\tcg[1]{\textcolor{green}{#1}}
+\newcommand\tcpr[1]{\textcolor{purple}{#1}}
+
+% Math ``brackets''
+\newcommand\parens[1]{\left( #1 \right)}
+\newcommand\squares[1]{\left[ #1 \right]}
+\newcommand\braces[1]{\left\{ #1 \right\}}
+\newcommand\angles[1]{\left\langle #1 \right\rangle}
+\newcommand\ceil[1]{\left\lceil #1 \right\rceil}
+\newcommand\floor[1]{\left\lfloor #1 \right\rfloor}
+\newcommand\abs[1]{\left| #1 \right|}
+\newcommand\dabs[1]{\left\| #1 \right\|}
+\newcommand\vect[1]{\ensuremath{\mathbf{#1}}}
+\newcommand\closure[1]{\overline{#1}}
+\newcommand\pset[1]{\mathcal{P}\left(#1\right)}
+\newcommand\inv[1]{#1^{-1}}
+\newcommand\norm[1]{\lVert#1\rVert}
+
+% variations of \frac and \sfrac
+\newcommand{\pfrac}[2]{\parens{\frac{#1}{#2}}} % enclosed in parentheses
+\newcommand{\bfrac}[2]{\squares{\frac{#1}{#2}}} % enclosed in square brackets
+\newcommand{\psfrac}[2]{\pa{\sfrac{#1}{#2}}} % sfrac enclosed in parentheses
+\newcommand{\bsfrac}[2]{\squares{\sfrac{#1}{#2}}} % sfrac enclosed in square brackets
+
+% Derivatives
+\newcommand{\td}[2]{\frac{d #1}{d #2}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ptd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\pthd}[2]{\frac{\partial^3 #1}{\partial #2^3}}
+\newcommand{\ptmd}[3]{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+
+% Matrices
+\newcommand{\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\pmat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+
+% for small matrices to be used in in-line expressions
+\newcommand{\sm}[1]{\begin{smallmatrix}#1\end{smallmatrix}} % no delimiters
+\newcommand{\psm}[1]{\parens{\sm{#1}}} % parentheses as delimiters
+\newcommand{\bsm}[1]{\squares{\sm{#1}}} % square brackets as delimiters
+
+% Inner product
+\providecommand{\inner}[1]{\left\langle{#1}\right\rangle}
+
+% Stochastic dominance
+\newcommand{\lesd}{\preceq_{\textrm{SD}}}
+
+% Set builder (use \Set ultimately and separate by ;
+\DeclarePairedDelimiterX{\set}[1]{\{}{\}}{\setargs{#1}}
+\NewDocumentCommand{\setargs}{>{\SplitArgument{1}{;}}m}
+{\setargsaux#1}
+\NewDocumentCommand{\setargsaux}{mm}
+{\IfNoValueTF{#2}{#1} {#1\nonscript\:\delimsize\vert\allowbreak\nonscript\:\mathopen{}#2}}%
+\def\Set{\set*}%
+
+% Shortcut math
+\newcommand{\ls}{\leqslant}
+\newcommand{\gs}{\geqslant}
+\def\ss{\subset}
+\def\sse{\subseteq}
+\def\nss{\not \ss}
+\def\nin{\not \in}
+\def\sps{\supset}
+\def\pss{\subsetneq}
+\def\prece{\preccurlyeq}
+\def\condgap{\hspace{1cm}}
+\def\eprec{\preceq}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+\newcommand{\es}{\emptyset}
+
+% Implication and reverse implication
+\def\imp{\Rightarrow}
+\def\pmi{\Leftarrow}
+
+% Integers up to number
+\newcommand\intsfin[1]{\braces{1, \ldots, #1}}
+
+% Logic
+\def\bic{\Leftrightarrow}
+
+% Bold and italic
+\newcommand\boldit[1]{\textbf{\textit{#1}}}
+
+% Misc math
+\newcommand{\st}{\ensuremath{\ \mathrm{s.t.}\ }}
+\newcommand{\setntn}[2]{ \{ #1 : #2 \} }
+\newcommand{\cf}[1]{ \lstinline|#1| }
+\newcommand{\fore}{\therefore \quad}
+\newcommand{\tod}{\stackrel { d } {\to} }
+\newcommand{\tow}{\stackrel { w } {\to} }
+\newcommand{\toprob}{\stackrel { p } {\to} }
+\newcommand{\toms}{\stackrel { ms } {\to} }
+\newcommand{\eqdist}{\stackrel{d} {=} }
+\newcommand{\iidsim}{\stackrel{\textrm{ {\sc iid }}} {\sim} }
+\newcommand{\1}{\mathbbm 1}
+\newcommand{\dee}{\,{\rm d}}
+\newcommand{\given}{\, | \,}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+% Indicator
+\newcommand{\ind}[1]{\mathbf{1}\parens{#1}}
+
+% PDE
+\newcommand{\pa}{\partial}
+
+% Shorcut vectors
+\def\vx{\vect{x}}
+\def\vy{\vect{y}}
+\def\va{\vect{a}}
+\def\vb{\vect{b}}
+\def\vn{\vect{n}}
+\def\vF{\vect{F}}
+
+% Shortcut modified capitals
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+\newcommand{\bA}{\mathbb{A}}
+\newcommand{\bB}{\mathbb{B}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bD}{\mathbb{D}}
+\newcommand{\bE}{\mathbb{E}}
+\newcommand{\bF}{\mathbb{F}}
+\newcommand{\bG}{\mathbb{G}}
+\newcommand{\bH}{\mathbb{H}}
+\newcommand{\bI}{\mathbb{I}}
+\newcommand{\bJ}{\mathbb{J}}
+\newcommand{\bK}{\mathbb{K}}
+\newcommand{\bM}{\mathbb{M}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bO}{\mathbb{O}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bQ}{\mathbb{Q}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\bT}{\mathbb{T}}
+\newcommand{\bU}{\mathbb{U}}
+\newcommand{\bV}{\mathbb{V}}
+\newcommand{\bX}{\mathbb{X}}
+\newcommand{\bY}{\mathbb{Y}}
+\newcommand{\bZ}{\mathbb{Z}}
+
+\newcommand{\sA}{\mathsf{A}}
+\newcommand{\sC}{\mathsf{C}}
+\newcommand{\sD}{\mathsf{D}}
+\newcommand{\sE}{\mathsf{E}}
+\newcommand{\sF}{\mathsf{F}}
+\newcommand{\sG}{\mathsf{G}}
+\newcommand{\sH}{\mathsf{H}}
+\newcommand{\sI}{\mathsf{I}}
+\newcommand{\sJ}{\mathsf{J}}
+\newcommand{\sK}{\mathsf{K}}
+\newcommand{\sM}{\mathsf{M}}
+\newcommand{\sN}{\mathsf{N}}
+\newcommand{\sO}{\mathsf{O}}
+\newcommand{\sP}{\mathsf{P}}
+\newcommand{\sQ}{\mathsf{Q}}
+\newcommand{\sR}{\mathsf{R}}
+\newcommand{\sS}{\mathsf{S}}
+\newcommand{\sT}{\mathsf{T}}
+\newcommand{\sU}{\mathsf{U}}
+\newcommand{\sV}{\mathsf{V}}
+\newcommand{\sX}{\mathsf{X}}
+\newcommand{\sY}{\mathsf{Y}}
+\newcommand{\sZ}{\mathsf{Z}}
+
+\newcommand{\CC}{\mathbbm C}
+\newcommand{\FF}{\mathbbm F}
+\newcommand{\RR}{\mathbbm R}
+\newcommand{\NN}{\mathbbm N}
+\newcommand{\PP}{\mathbbm P}
+\newcommand{\EE}{\mathbbm E}
+\newcommand{\TT}{\mathbbm T}
+\newcommand{\VV}{\mathbbm V}
+\newcommand{\QQ}{\mathbbm Q}
+\newcommand{\WW}{\mathbbm W}
+\newcommand{\ZZ}{\mathbbm Z}
+\newcommand{\II}{\mathbbm I}
+\renewcommand{\SS}{\mathbbm S}
+
+% Common closures
+\def\clA{\closure{A}}
+\def\clB{\closure{B}}
+\def\clK{\closure{K}}
+
+% Operators
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\graph}{graph}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\Prob}{Prob}
+\DeclareMathOperator{\determinant}{det}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\cov}{\bC ov}
+\DeclareMathOperator{\corr}{\bC orr}
+\DeclareMathOperator{\var}{\bV ar}
+\DeclareMathOperator{\mse}{mse}
+\DeclareMathOperator{\se}{se}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\range}{rng}
+\DeclareMathOperator{\kernel}{ker}
+\DeclareMathOperator{\dimension}{dim}
+\DeclareMathOperator{\bias}{bias}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ran}{ran}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\dive}{div}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\supp}{Supp}
+
+\renewcommand{\exp}[1]{\text{exp}\parens{#1}}
+
+% Distributions
+% Normal
+\newcommand{\normal}[2]{\cN\parens{#1, #2}}
+
+% ===============================================
+\NeedsTeXFormat{LaTeX2e}
+
+% Copyright 2012 by Thierry Masson, http://science.thilucmic.fr
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+% 
+% Changelog
+% 2012/01/19 Initial version
+
+%% This package can only be used with beamer and it requires tikz.
+%% It defines 3 sets of commands:
+%% 1- a command to annotate a part of a formula
+%%		\commentmathwithtext
+%% 2- commands to place tikz nodes on top of parts of formulas
+%%		\inserthightlightnode, \hightlightnode
+%% 3- a command to install a fleeting box
+%%		\fleetingbox
+
+%% These commands are illustrated in the tex file distributed with this package.
+%% Comments are given in this example file.
+
+
+
+\RequirePackage{tikz}
+
+
+\usetikzlibrary{fit,backgrounds,calc}
+ 
+
+%% ANNOTATION OF MATH FORMULA
+%% default colors, can be changed by user.
+%% color for the background behind the mathematical node
+\colorlet{mathnodecolor}{structure!30}
+%% color for the text/comment node
+\colorlet{mathtextcolor}{black}
+
+
+%% default style of the non visible node which contains the mathematical expression
+\tikzset{display math/.style={execute at begin node=$\displaystyle,
+							execute at end node=$,
+							rectangle,
+							line width=0pt,
+							inner sep=0pt,
+							outer sep=0pt,
+							}}
+
+
+%% default style of the background node behind the non visible mathematical node							
+\tikzset{math node style/.style={rectangle,
+								inner sep=1.5pt,
+								outer sep=0pt,
+								rounded corners=2pt,
+								line width=0pt,
+								fill=mathnodecolor}}
+
+
+%% default style of the text/comment node
+\tikzset{text node style/.style={rectangle,
+								inner sep=2.5pt,
+								outer sep=0pt,
+							 	rounded corners=2pt,
+								line width=0pt,
+								draw=none,
+								fill=mathnodecolor}}
+
+
+%% default style of the link between the mathematical node and the background node
+\tikzset{link style/.style={line width=1pt,draw=mathnodecolor}}
+
+
+%% default style of the "to" command in the link
+\tikzset{to style/.style={}}
+
+
+%% keys to define/append the styles of the objects, to be used in the tex file by the author
+%% key to define the relative position of the math node to the text/comment node
+%% best choice is to use polar coordinates
+\tikzset{position/.initial={(45:2cm)}}
+
+%% key to append style to the background node behind the mathematical node
+\tikzset{append math node style/.code={\tikzset{math node style/.append style={#1}}}}
+\tikzset{append math node style/.initial={}}
+
+%% key to append style to the text/comment node
+\tikzset{append text node style/.code={\tikzset{text node style/.append style={#1}}}}
+\tikzset{append text node style/.initial={}}
+
+%% key to append style to the link
+\tikzset{append link style/.code={\tikzset{link style/.append style={#1}}}}
+\tikzset{append link style/.initial={}}
+
+%% key to append style to the "to" command in the link
+\tikzset{append to style/.code={\tikzset{to style/.append style={#1}}}}
+\tikzset{append to style/.initial={}}
+
+%% key to define the color of the mathematical expression
+\tikzset{math color/.code={\colorlet{mathtextcolor}{#1}}}
+
+
+%% definition of the \commentmathwithtext command 
+\newcommand<>{\commentmathwithtext}[3][]{%
+{\pgfkeys{/tikz/.cd,#1}% keys initialization
+\pgfkeysgetvalue{/tikz/position}{\position}%
+%
+\tikz[baseline=(mathnode.base)]{%
+%
+\temporal#4%
+{% before
+% mathematical node
+\node[display math,outer sep=0pt] (mathnode) {#2};% 
+}% end of before
+{% default
+% mathematical node
+\node[display math,outer sep=0pt,text=mathtextcolor] (mathnode) {#2};% 
+%\only#4{
+\begin{scope}[overlay]
+\begin{pgfonlayer}{background}
+% the background node behind the mathematical node
+	\node[fit=(mathnode),math node style,align=left] (mathnodebg) {};
+\end{pgfonlayer}
+% this is the only solution I have found to transform "\position" into a tikz coordinate
+\node[align=left] (positionpt) at \position {};
+% the text/comment node
+\node[text node style] (textnode) at ($(mathnode)+(positionpt)$) {#3};
+% link between the text/commend node and the background behind the mathematcal node
+\draw[link style] (textnode) to[to style] (mathnodebg);% 
+\end{scope}%
+}% end of default
+{% after
+\node[display math,outer sep=0pt] (mathnode) {#2};% noeud mathématique
+}% end of after
+%}% end of only
+%
+}% fend of tikz
+}}% end of \commentmathwithtext
+
+%% HIGHLIGHT NODE
+%% default style for the frame
+%% Don't use a background color: the tikz picture is placed on top of the text to highlight
+\tikzset{highlight node style/.style={rectangle,
+								inner sep=3pt,
+								outer sep=0pt,
+							 	rounded corners=3pt,
+								line width=1.5pt,
+								draw=red,
+								fill=none,
+								}}
+
+%% key to append style to the frame, to be used in the tex file by the author
+\tikzset{append highlight node style/.code={\tikzset{highlight node style/.append style={#1}}}}
+\tikzset{append highlight node style/.initial={}}
+
+
+%% The command to define and give a name to a node around the text to highlight
+%% It is preferable to put nodes at different places around the total expression
+%% The first argument is the name of the node
+%% The second argument should be the an empty box
+%% This command takes no place at the end
+\newcommand{\inserthightlightnode}[3][]{%
+\tikz[remember picture,overlay,baseline=(#2.base)]{%
+\node[rectangle,align=left,inner sep=0pt, outer sep=0pt,#1] (#2) {#3};%
+}}
+
+%% The command to draw the frame.
+%% Use the names of the nodes in parenthesis (nodes defined by the \inserthightlightnode command)
+%% The frame will fit all the nodes.
+%% This command can be placed anywhere in the slide, after the corresponding \inserthightlightnode command
+%% It can take some vertical space: put it at the end of a line.
+\newcommand<>{\hightlightnode}[2][]{%
+\temporal#3%
+{% before
+}% end of before
+{% default
+\tikz[remember picture,overlay]{%
+\pgfkeys{/tikz/.cd,#1}% keys initialization
+\node[highlight node style,align=left,fit=#2,#1] {};%
+}}% end of default
+{% after
+}% end of after
+}
+
+
+%% FLEETING BOX
+%% default style of the fleeting box
+\tikzset{fleeting box style/.style={%
+					outer sep=0pt,
+					inner sep=5pt,
+					line width=0pt,
+					color=black,
+					font=\small,
+					align=left,
+					fill=structure!20,
+					draw=none,
+					rectangle,
+					rounded corners=2mm,
+					anchor=north east,
+					yshift=-1ex,
+					text width=0.9\linewidth,
+}}
+
+%% key to append style of the fleeting box, to be used in the tex file by the author
+\tikzset{append fleeting box style/.code={\tikzset{fleeting box style/.append style={#1}}}}
+\tikzset{append fleeting box style/.initial={}}
+
+%% the \fleetingbox command
+\newcommand<>{\fleetingbox}[2][]{%
+\uncover#3{%
+\hfill\raisebox{0pt}[0pt][0pt]{% push the 0-dim box to the right of the current line
+\tikz[overlay]{%
+\node[fleeting box style,#1] (resultatbox) {#2};
+}% end of tikz
+}% end of raisebox
+\par
+}}% end of fleetingbox
+% ===============================================
+% Addition by @scaotravis: Yellow Background highlighter with animation
+\tikzset{%
+  remember picture with id/.style={%
+    remember picture,
+    overlay,
+    save picture id=#1,
+  },
+  save picture id/.code={%
+    \edef\pgf@temp{#1}%
+    \immediate\write\pgfutil@auxout{%
+      \noexpand\savepointas{\pgf@temp}{\pgfpictureid}}%
+  }
+}
+
+\def\savepointas#1#2{%
+  \expandafter\gdef\csname save@pt@#1\endcsname{#2}%
+}
+
+\tikzdeclarecoordinatesystem{pic}{%
+  \@ifundefined{save@pt@#1}{%
+    \pgfpointorigin
+  }{%
+  \pgfsys@getposition{\csname save@pt@#1\endcsname}\save@orig@pic%
+  \pgfsys@getposition{\pgfpictureid}\save@this@pic%
+  \pgf@process{\pgfpointorigin\save@this@pic}%
+  \pgf@xa=\pgf@x
+  \pgf@ya=\pgf@y
+  \pgf@process{\pgfpointorigin\save@orig@pic}%
+  \advance\pgf@x by -\pgf@xa
+  \advance\pgf@y by -\pgf@ya
+  }%
+}
+
+\newcounter{highlight}
+\newcommand{\hlstart}{\tikz[remember picture with id=hlstart\the\value{highlight},baseline=-0.7ex];\hl@start}
+\newcommand{\hlend}{\tikz[remember picture with id=hlend\the\value{highlight},baseline=-0.7ex];\hl@end\stepcounter{highlight}}
+\newcommand{\fdstart}{\tikz[remember picture with id=hlstart\the\value{highlight},baseline=-0.7ex];\fd@start}
+\newcommand{\fdend}{\tikz[remember picture with id=hlend\the\value{highlight},baseline=-0.7ex];\fd@end\stepcounter{highlight}}
+\newcommand{\vlstart}{\tikz[remember picture with id=hlstart\the\value{highlight},baseline=-1em];\vl@start}
+\newcommand{\vlend}{\tikz[remember picture with id=hlend\the\value{highlight},baseline=0.3ex];\vl@end\stepcounter{highlight}}
+
+\newcommand{\hl@start}[1][]{%
+  \hl@draw{highlighter}{#1}{\the\value{highlight}}}
+
+\newcommand{\hl@end}{}
+
+\newcommand{\fd@start}[1][]{%
+  \def\fd@args{#1}}
+
+\newcommand{\fd@end}{\def\@tempa{\hl@draw{fader}}\expandafter\@tempa\expandafter{\fd@args}{\the\value{highlight}}\def\fd@args{}}
+
+\newcommand{\vl@start}[1][]{%
+  \vl@draw{highlighter}{#1}{\the\value{highlight}}}
+
+\newcommand{\vl@end}{}
+
+
+\def\hl@sets{%
+  \edef\hl@sx{\the\pgf@x}%
+  \edef\hl@sy{\the\pgf@y}%
+}
+\def\hl@sete{%
+  \edef\hl@ex{\the\pgf@x}%
+  \edef\hl@ey{\the\pgf@y}%
+}
+
+\@ifclassloaded{beamer}{
+
+\def\page@node{
+  \path (current page.south east)
+      ++(-\beamer@rightmargin,\footheight)
+  node[
+    minimum width=\textwidth,
+    minimum height=\textheight,
+    anchor=south east
+  ] (page) {};
+}
+
+}{
+
+  \def\page@node{
+    \path (current page.north west)
+    ++(\hoffset + 1in + \oddsidemargin + \leftskip,\voffset + 1in + \topmargin + \headheight + \headsep)
+    node[
+      minimum width=\textwidth - \leftskip - \rightskip,
+      minimum height=\textheight,
+      anchor=north west
+    ] (page) {};
+  }
+
+}
+
+\newcommand{\hl@draw}[3]{%
+  \begin{tikzpicture}[remember picture,overlay]%
+  \page@node
+  \tikzset{#2,highlight=#1,every path/.append style={highlight=#1}}%
+  \pgfmathsetlengthmacro{\hl@width}{\the\pgflinewidth - 1pt}%
+  \coordinate (hlstart) at (pic cs:hlstart#3);
+  \coordinate (hlend) at (pic cs:hlend#3);
+  \tikz@scan@one@point\hl@sets(pic cs:hlstart#3)
+  \tikz@scan@one@point\hl@sete(pic cs:hlend#3)
+  \ifdim\hl@sy=\hl@ey\relax
+  \draw (hlstart) -- (hlend);
+  \else
+  \draw (hlstart) -- (hlstart -| page.east);
+  \pgfmathsetlengthmacro{\hl@sy}{\hl@sy -\hl@width}%
+  \pgfmathsetlengthmacro{\hl@ey}{\hl@ey +\hl@width}%
+  \loop\ifdim\hl@sy>\hl@ey\relax
+  \draw (0,\hl@sy -| page.west) -- (0,\hl@sy -| page.east);
+  \pgfmathsetlengthmacro{\hl@sy}{\hl@sy -\hl@width}%
+  \repeat
+  \draw (hlend -| page.west) -- (hlend);
+  \fi
+  \end{tikzpicture}%
+}
+
+\newcommand{\vl@draw}[3]{%
+  \begin{tikzpicture}[remember picture,overlay]%
+  \page@node
+  \tikzset{#2,highlight=#1,every path/.append style={highlight=#1}}%
+  \pgfmathsetlengthmacro{\hl@width}{\the\pgflinewidth - 1pt}%
+  \coordinate (hlstart) at (pic cs:hlstart#3);
+  \coordinate (hlend) at (pic cs:hlend#3);
+  \tikz@scan@one@point\hl@sets(pic cs:hlstart#3)
+  \tikz@scan@one@point\hl@sete(pic cs:hlend#3)
+  \ifdim\hl@sx=\hl@ex\relax
+  \draw (hlstart) -- (hlend);
+  \else
+  \draw (hlstart) -- (hlstart |- page.south);
+  \pgfmathsetlengthmacro{\hl@sx}{\hl@sx -\hl@width}%
+  \pgfmathsetlengthmacro{\hl@ex}{\hl@ex +\hl@width}%
+  \loop\ifdim\hl@sx>\hl@ex\relax
+  \draw (\hl@sx,0 |- page.north) -- (\hl@sx,0 |- page.south);
+  \pgfmathsetlengthmacro{\hl@sx}{\hl@sx -\hl@width}%
+  \repeat
+  \draw (hlend |- page.north) -- (hlend);
+  \fi
+  \end{tikzpicture}%
+}
+
+\tikzset{%
+  highlight/.default=highlighter,
+  highlight/.style={
+    color=\pgfkeysvalueof{/tikz/#1 colour},
+    line width=\pgfkeysvalueof{/tikz/#1 width},
+    line cap=\pgfkeysvalueof{/tikz/#1 cap},
+    opacity=\pgfkeysvalueof{/tikz/#1 opacity},
+  },
+  highlighter colour/.initial=yellow,
+  highlighter width/.initial=14pt,% <-- Tweak (was 12pt)
+  highlighter cap/.initial=butt,
+  highlighter opacity/.initial=1,
+  fader colour/.initial=gray,
+  fader width/.initial=12pt,
+  fader cap/.initial=butt,
+  fader opacity/.initial=.5,
+}
+
+\@ifclassloaded{beamer}{
+  %% Beamer variants
+  \setbeamercolor{highlighted text}{bg=yellow}
+  \setbeamercolor{faded text}{fg=gray}
+  
+  \newcommand<>{\highlight}[2][]{%
+    \only#3{\hlstart[#1]}#2\only#3{\hlend}}
+  
+  \newcommand<>{\fade}[2][]{%
+    \only#3{\fdstart[#1]}#2\only#3{\fdend}}
+  
+  \newcommand<>{\vhighlight}[2][]{%
+    \only#3{\vlstart[#1]}#2\only#3{\vlend}}
+  }{
+  \newcommand{\highlight}[2][]{%
+  \hlstart[#1]#2\hlend}
+  
+  \newcommand{\fade}[2][]{%
+  \fdstart[#1]#2\fdend}
+  
+  \newcommand{\vhighlight}[2][]{%
+  \vlstart[#1]#2\vlend}
+}
+% ===============================================
