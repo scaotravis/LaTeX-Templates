@@ -38,6 +38,8 @@
 \usepackage{indentfirst}
 % Appendix
 \usepackage[toc,page]{appendix}
+% Equation numbering
+\numberwithin{equation}{section}
 % Use more than one optional parameter in a new commands
 \usepackage{xargs}
 % Change left or right spacing
@@ -65,17 +67,22 @@
 \setcounter{secnumdepth}{3}
 % Pretty lists
 \usepackage{enumitem}
-\setlist[enumerate]{itemsep=-2pt,topsep=2pt}
-\setlist[itemize]{itemsep=-2pt,topsep=2pt}
+\setlist[enumerate]{itemsep=2pt,topsep=2pt}
+\setlist[itemize]{itemsep=2pt,topsep=2pt}
+% Footnote symbol
+\usepackage{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
 % Pretty underscore
-\def\_{\leavevmode \ifmmode\else\kern0.1em \fi \vbox{\hrule width0.5em}\kern0.1em} 
+\def\_{\leavevmode \ifmmode\else\kern0.1em \fi \vbox{\hrulewidth0.5em}\kern0.1em}
 % Footnote symbol
 \usepackage{footmisc}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 % Game tree
 \usepackage{tikz}
 \usetikzlibrary{calc}
-% More spaced out tabular
+% Fancy table
+\usepackage{tabu}
+% More vertically spaced out table
 \setlength\extrarowheight{1.2pt}
 \renewcommand{\arraystretch}{1.2}
 
@@ -261,3 +268,36 @@
 }
 % Content list
 \usepackage{filecontents}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Julia listings code insert (Julia definition (c) 2014 Jubobs)
+\usepackage[T1]{fontenc}
+\usepackage{beramono}
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{xcolor}
+
+\lstdefinelanguage{Julia}%
+  {morekeywords={abstract,break,case,catch,const,continue,do,else,elseif,%
+      end,export,false,for,function,immutable,import,importall,if,in,%
+      macro,module,otherwise,quote,return,switch,true,try,type,typealias,%
+      using,while},%
+   sensitive=true,%
+   alsoother={$},%
+   morecomment=[l]\#,%
+   morecomment=[n]{\#=}{=\#},%
+   morestring=[s]{"}{"},%
+   morestring=[m]{'}{'},%
+}[keywords,comments,strings]%
+
+\lstset{%
+    language         = Julia,
+    basicstyle       = \ttfamily\small,
+    keywordstyle     = \bfseries\color{blue},
+    stringstyle      = \color{magenta},
+    commentstyle     = \color{ForestGreen},
+    showstringspaces = false,
+    breaklines       = true,
+    linewidth        = \linewidth, 
+    frame            = single, 
+}
