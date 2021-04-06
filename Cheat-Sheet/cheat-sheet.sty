@@ -58,6 +58,9 @@
 % Font
 \usepackage{mathpazo} 
 \linespread{1.05}
+% Change \xi symbol in mathpazo
+\DeclareSymbolFont{CMletters}{OML}{cmm}{m}{it}
+\DeclareMathSymbol{\xi}{\mathord}{CMletters}{"18}
 % Geometry
 \geometry{left=.5in,right=.5in,top=.5in,bottom=.5in}
 % Counters
