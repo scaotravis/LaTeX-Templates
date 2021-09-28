@@ -43,3 +43,7 @@ Files under the [Tips](https://github.com/scaotravis/LaTeX-Templates/tree/master
 
 * [Getting started with TeX, LaTeX, and friends](https://www.tug.org/begin.html)
 * [Overleaf tutorials](https://www.overleaf.com/learn/latex/Tutorials)
+
+## Guides on Making Presentation Slides
+
+* [How to give an applied micro talk](https://www.brown.edu/Research/Shapiro/pdfs/applied_micro_slides.pdf)
