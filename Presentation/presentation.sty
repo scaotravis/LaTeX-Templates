@@ -6,6 +6,8 @@
 % Beamer
 \usetheme[
   outer/progressbar=frametitle,
+  sectionpage=none,
+  progressbar=none
   %outer/numbering=none
 ]{metropolis}
 
@@ -23,9 +25,12 @@
 \definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
 \definecolor{cadetgrey}{rgb}{0.57, 0.64, 0.69}
 
-\setbeamercolor{background canvas}{bg=white}
-\setbeamercolor{frametitle}{bg=darkmidnightblue}
+% \setbeamercolor{frametitle}{bg=white, black}
 \setbeamercolor{progress bar}{fg=cadetgrey, bg=cadetgrey}
+
+% Number sections
+% \setbeamertemplate{section in toc}[sections numbered]
+% \setbeamertemplate{subsection in toc}[subsections numbered]
 
 % Subfigures
 \usepackage{caption}
@@ -734,3 +739,17 @@
   \vlstart[#1]#2\vlend}
 }
 % ===============================================
+% References
+
+% Content list
+\usepackage{filecontents}
+% Bibliography
+\usepackage{csquotes}
+\usepackage[authordate,bibencoding=auto,backend=biber,natbib]{biblatex-chicago}
+% Include bibliography file
+\addbibresource{bibliography.bib}
+\hypersetup{
+    citecolor={red!50!black},
+    urlcolor={blue!80!black}
+}
+\AtNextBibliography{\small}
