@@ -7,12 +7,31 @@
 \usetheme[
   outer/progressbar=frametitle,
   sectionpage=none,
-  progressbar=none
-  %outer/numbering=none
+  progressbar=none, 
+  outer/numbering=fraction
 ]{metropolis}
+
+% Activate gray out effect for inactive elements
+\setbeamercovered{transparent}
+\def\beamertemplatetransparentcoveredmedium{\setbeamercovered{transparent=20}}
+\beamertemplatetransparentcoveredmedium
+
+% Change bulletpoint styles
+\setbeamertemplate{itemize items}[square]
+\setbeamertemplate{itemize subitem}[circle]
+\setbeamertemplate{enumerate items}[circle]
+\setbeamertemplate{enumerate subitem}[square]
+
+% Change alert styles
+\setbeamercolor{alerted text}{fg=red}
+
+% Change frame margin
+\usepackage{changepage}
 
 % Force default beamer font
 \usefonttheme{default}
+\usefonttheme[onlymath]{serif} 
+\usepackage{mathpazo}
 
 % Datetime
 \usepackage[USenglish]{babel}
@@ -753,3 +772,12 @@
     urlcolor={blue!80!black}
 }
 \AtNextBibliography{\small}
+
+% Bold text animation
+\makeatletter
+\newcommand{\widthofbold}[1]{%
+  \settowidth{\dimen0}{#1}%
+  \makebox[\dimen0]{#1}}
+\newcommand<>{\myword}[1]{%
+  \alt#2{\textbf{#1}}{\widthofbold{#1}}}
+\makeatother
